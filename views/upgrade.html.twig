@@ -1,0 +1,231 @@
+{% extends "partial/firedrop_layout.html.twig" %}
+
+{% block title %}{{ pageTitlePrepend }} {{ t("account", "account")|title }}{% endblock %}
+{% block description %}{{ pageTitlePrepend }} {{ t("upgrade_meta_description", "Your Account") }}{% endblock %}
+{% block keywords %}{{ pageTitlePrepend|lower }}{{ t("upgrade_meta_keywords", ", account, paid, membership, upload, download, site") }}{% endblock %}
+{% block selected_navigation_link %}upgrade{% endblock %}
+
+{% block body %}
+
+<section id="content_header">
+	<div class="container text-center">
+		<h1>Upgrade your Firedrop Service</h1>
+    </div>
+</section>
+<style>
+.term-picker {
+	
+	width:300px;
+	height:40px;
+	background-color:#ebf0f2;
+	
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+	border-radius: 20px;
+	
+	margin:0 auto;
+	margin-bottom:42px;
+	
+	border: 1px solid #e0eaee;
+
+	
+}
+.term-picker .option {
+	font-size:14px;
+	text-align:center;
+	width:48%;
+	display:inline-block;
+	height:32px;
+	margin-top:3px;
+	margin-left:3px;
+	color:rgba(30,71,89,0.3);
+	line-height:32px;
+	cursor:pointer;
+	font-family: 'Gotham Round';
+	position:relative;
+}
+.term-picker .option.on {
+	color:#FFF;
+}
+.term-picker .tbg {
+
+	width:148px;
+	height:32px;
+	margin-top:3px;
+	margin-left:4px;
+	background-color:#73d56f;	
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+	border-radius: 20px;
+	position:absolute;
+	padding-left:148px;
+	
+	
+	
+}
+.term-label {
+	font-size:11px;
+	text-align:center;
+	color:rgba(30,71,89,0.3);
+	font-family: 'Gotham Round';
+}
+@media only screen and (max-width : 767px) {
+	.term-picker{
+		position:relative;
+	}	
+
+}
+.ease-out {
+	
+-webkit-transition: all 500ms cubic-bezier(0.000, 0.000, 0.580, 1.000); 
+   -moz-transition: all 500ms cubic-bezier(0.000, 0.000, 0.580, 1.000); 
+     -o-transition: all 500ms cubic-bezier(0.000, 0.000, 0.580, 1.000); 
+        transition: all 500ms cubic-bezier(0.000, 0.000, 0.580, 1.000); /* ease-out */
+}
+               /* Fade-In Effect */
+               .visible
+               {
+                       visibility: visible;
+                       opacity: 1;
+                       transition: opacity 2s linear;
+               }                
+               /* Fade-Out Effect */
+               .anim-hidden
+               {
+                       visibility: hidden;
+                       opacity: 0;
+                       transition: visibility 0s 0.1s, opacity 0.1s linear;
+               }      
+</style>
+
+
+    
+	  {% if msg_page_errors is defined %}
+    <p>ERROR: No packages found, please contact the support team. (at least 1 package needs to have the option of \'On Upgrade Page\' to \'Yes\' with \'Package Type\' of \'Paid\')</p>
+{% endif %}
+
+	
+	<div class="container">
+            {% for pricingRow in pricingRows %} 
+<div class="col-sm-4" id="package-2">
+    
+    	<div class="ptable-panel" style="border-radius:0px; border:none;">
+     
+            <div class="title" style="font-size:18px; padding-top:12px; margin-bottom:6px; padding-bottom:4px;">
+						<h3 class="text-center"><strong>{{ pricingRow['_label'] }}</strong><br/> {{ t('premium', 'premium') }}</h3>
+					</div>
+					<div class="title" style="margin-top:2px; padding-top:6px; padding-bottom:3px; background-color:#f4f4f4;  border-top:1px solid #f4f4f4; border-bottom:1px solid #fff;">
+          
+						<p class="lead total-price" style="font-size:40px"><strong>{{ SITE_CONFIG_COST_CURRENCY_SYMBOL }}</span>{{ pricingRow['price'] }}</strong></p>
+						 {% if pricingRow['_per_day_cost'] > 0 %}
+						<p class="lead price-per-day" style="font-size:16px">{{ SITE_CONFIG_COST_CURRENCY_SYMBOL }}{{ pricingRow['_per_day_cost'] }} {{ t('upgrade_boxes_per_day', 'per day')|title }}</p>
+						{% endif %}
+					</div>
+					
+					<img src="/themes/firedrop/img/plan-inferno.png" />
+					
+					<ul class="list-group list-group-flush text-center">
+						<li class="list-group-item"><i class="fa fa-lock"></i>&nbsp;&nbsp;{{ t('secure_payment', 'secure payment')|title }}</li>
+						<li class="list-group-item"><i class="fa fa-eye-slash"></i> {{ t('safe_and_anonymous', '100% Safe & Anonymous')|title }}</li>
+						<li class="list-group-item payment-method">{{ t('select_payment_method', 'Select Payment Method:')|title }}</li>
+					</ul>
+				
+					<div class="panel-footer">
+						{{ PluginHelper.outputPaymentLinks({'days': pricingRow['_days'], 'price': pricingRow['price'], 'user_level_pricing_id': pricingRow['id'], 'user_level_package_id': packageLevelId})|raw }}
+					</div>
+					
+				</div>
+			</div>
+		
+	
+	 {% endfor %}
+
+<div class="row">
+	<div class="container">
+	 <div class="col-xs-12">
+	<center style="font-family: 'Gotham Round'; font-size:16px; ">
+    <br />
+    	<p>Our Guarantee</p>
+    	<p style="opacity:0.8; font-size:13px;">At Firedrop we believe the key to a great service is to treat our users right, which is why we do not supply a fixed contract or make any hidden payments - If you are not fully satisfied with the service, you are free to cancel at any time</p>
+        <br />
+    </center>
+</div>
+</div>
+
+<script>
+$(".pkg-more").on("click", ".pkg-more-info", function(evt) {
+
+	if($('.pkg-details-more').css('display') == 'none')
+	{
+		 $(".pkg-details-more").slideDown('slow');
+		 $(".pkg-more").html('<i class="fa fa-minus-square-o pkg-more-info" aria-hidden="true"></i>');
+	}
+	else
+	{
+  		$(".pkg-details-more").slideUp('slow');
+		$(".pkg-more").html('<i class="fa fa-plus-square-o pkg-more-info" aria-hidden="true"></i>');
+	}
+
+});
+</script>
+
+
+
+
+<div id="wrap">
+<div class="row  package-splash">
+	<div class="container">    
+        <div class="col-xs-12">
+        
+        	<hr />
+            
+            <center>
+            <h4>Need a little help to decide?</h4>
+            <a href="/contact" class="button-contact"><i class="fa fa-envelope" aria-hidden="true"></i>  Get in touch with us</a>
+            
+            </center>
+      </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div id="freeLimitsModal" class="modal fade fd-modal" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Free Account Limits &amp; Restrictions</h4>
+      </div>
+      <div class="modal-body">
+        <p>Firedrop's Free packages come with a lot of great features however do have certain limits and restrictions in place.</p>
+        <p>Here is a breakdown of the Free accounts features, limits and restrictions:</p>
+        <ul>
+        	<li>100GB FREE Cloud Storage</li>
+                        <li>Upload a maximum of 50 files per queue</li>
+            <li>4GB Individual filesize</li>
+                        <li>Temporary speed limits only in place after heavy usage limit</li>
+                        
+                        
+        </ul>
+        
+        <p>Though there are these limits in place, Free accounts still have full access to:</p>
+        <ul>
+        	<li>All Firedrop desktop, mobile and tablet apps</li>
+            <li>Web-Media streaming direct from the cloud</li>
+            <li>Unlimited number of files and folders, within alotted storage capacity</li>
+        </ul>
+            
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+ </div>
+  </div>
+</div>
+ </div>
+{% endblock %}

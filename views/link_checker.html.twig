@@ -1,0 +1,64 @@
+{% extends "partial/firedrop_layout.html.twig" %}
+
+{% block title %}{{ t("link_checker_page_name", "Link Checker") }}{% endblock %}
+{% block description %}{{ t("link_checker_meta_description", "Check multiple download links at the same time.") }}{% endblock %}
+{% block keywords %}{{ t("link_checker_meta_keywords", "link, checker, copyright, infringement, file, hosting") }}{% endblock %}
+
+{% block body %}
+<div id="wrap">
+   <section id="content_header">
+	<div class="container text-center">
+		<h1>Link Checker</h1>
+    </div>
+</section>
+<section id="content_box" class="container text-center">
+            <strong>{{ t("link_checker_intro", "Use this page to check whether multiple download links are still active. Enter up to 200 urls below, a new one on each line and click 'Check Files'") }}</strong>
+        </section>
+
+<section class="content_divider container text-center">
+</section>
+
+<section id="content_box" class="container text-center">
+           
+                    {% if msg_page_errors is defined %}
+                    <div class="pageErrors">
+                        <div class="alert__body"><i class="fa fa-exclamation-triangle color--error"></i>&nbsp;&nbsp;{% if msg_page_errors is defined %}{{ msg_page_errors|join('. ') }}{% endif %}</div>
+                    </div>
+                    {% elseif msg_page_successes is defined %}
+                 <div class="alert alert-success">
+<div class="alert__body"><i class="fa fa-check color--success"></i>&nbsp;&nbsp;{% if msg_page_successes is defined %}{{ msg_page_successes|join('. ') }}{% endif %}</div></div>
+                    {% endif %}
+                    
+                    
+                     {% if checkedUrls|length > 0 %}
+ <ul>
+                        {% for url,status in checkedUrls %}
+                            <li><i class="fa fa-check color--success"></i>&nbsp;&nbsp;{{ url }}</li>
+                        {% endfor %}
+                        </ul>
+                       
+						</table>
+						<div class="input-group form-buttons"> <span class="input-group-btn">
+				<input name="submitme" type="hidden" value="1"/>
+                        <a href="{{ WEB_ROOT }}/link_checker">« {{ t('search_again', 'Search again') }}</a>
+                    {% else %}
+					 <div class="form">
+                        <form method="post" role="form" action="{{ CORE_SITE_PATH }}/link_checker" autocomplete="off">
+                            <!-- fix for chrome auto complete not working -->
+                            <div class="input-group"> <span class="input-group-addon"><i class="fa  fa-link"></i></span>
+							
+							  <textarea rows="8" class="form-control" id="fileUrls" placeholder="{{ t('link_checker_list_of_file_download_urls', 'List of file download urls, 1 on each line.') }}" name="fileUrls"></textarea>
+                </div> <br />
+                                    
+<div class="input-group form-buttons"> <span class="input-group-btn">
+                        <input name="submitme" type="hidden" value="1"/> 
+                        <button class="btn btn-danger" tabindex="99" type="submit" name="submit" style="width:100%;height:60px;"><i class="fa fa-check"></i> {{ t("check_files", "check files")|title }}</button>
+                    </span> 
+                </div>
+            </form>
+        </div>
+    </div>
+	</div>
+                    {% endif %}
+           </section>
+{% endblock %}

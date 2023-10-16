@@ -1,0 +1,178 @@
+{% extends "partial/firedrop_layout.html.twig" %}
+
+{% block title %}{{ trialUser == false?t("register_page_name", "Register"):t("register_page_name_temp_account", "Convert Temp Account") }}{% endblock %}
+{% block description %}{{ t("register_meta_description", "Register for an account") }}{% endblock %}
+{% block keywords %}{{ t("register_meta_keywords", "register, account, short, url, user") }}{% endblock %}
+
+{% block body %}
+<section id="content_header">
+	<div class="container text-center">
+		<h1>Create Account</h1>
+    </div>
+</section>
+
+<style>
+
+.frmRegInput {
+	height:54px;
+}
+
+
+</style>
+
+<style>
+
+
+
+.step-dot {position: absolute; width: 30px; height: 30px; display: block; background: #f5f5f5; top: 50px; left: 50%; margin-top: -15px; margin-left: -15px; border-radius: 50%; z-index:99;} 
+.step-dot.active {position: absolute; width: 30px; height: 30px; display: block; background: #d52028; top: 50px; left: 50%; margin-top: -15px; margin-left: -15px; border-radius: 50%; z-index:99;} 
+.step-dot.active:after {content: ' '; width: 14px; height: 14px; background: #21495b; border-radius: 50px; position: absolute; top: 8px; left: 8px; } 
+</style>
+<section id="content_box" class="container text-center">
+
+	<!-- Progress Bar -->
+    <div class="row mob-remove" style="margin-bottom:35px;">
+        
+            <div class="col-xs-3 text-center">
+                Select Package
+                <a id="step-1-circle" href="/signup" class="step-dot active"></a>
+            </div>		
+            <div class="col-xs-3 text-center">
+                Create Account
+                <a id="step-2-circle" class="step-dot active"></a>
+            </div>	
+            <div class="col-xs-3 text-center">
+                Verify Email
+                <a id="step-3-circle" class="step-dot"></a>
+            </div>	
+            <div class="col-xs-3 text-center">
+                Complete!
+                <a id="step-4-circle" class="step-dot"></a>
+            </div>
+            
+            <div class="col-xs-12">&nbsp;</div>
+    
+            <div class="col-xs-12">
+                <center>
+                <div class="progress" style="border-radius: 0px; height: 8px; box-shadow: none; width:78%;">
+                        <div id="stepBar" class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:33%; background-color:#d52028;"></div>
+                
+                </div>	
+                </center>
+                
+            </div>
+          
+    </div> 
+
+
+        <!-- First Step -->
+        <div id="panelOne">	                  
+   
+                    <div id="wrap">
+                    <form method="post" role="form" id="form_login" action="{{ CORE_SITE_PATH }}/register" autocomplete="off">
+                       <div class="row">
+    <div class="col-md-6 form-element">
+	
+	  {% if msg_page_errors is defined %}
+                    <ul class="pageErrors"><li class="no-side-margin"><i class="fa fa-exclamation-triangle margin-right-20"></i>&nbsp;{% if msg_page_errors is defined %}{{ msg_page_errors|join('. ') }}{% endif %}</li></ul>
+                    {% endif %}
+					
+	 <div class="input-group"> <span class="input-group-addon"><i class="fa fa-chevron-right"></i></span>
+                      <select class="form-control" autofocus="autofocus" tabindex="1" id="title" name="title">
+                                    <option value="" selected>{{ t("title", "title") }}</option>
+                                    {% for value in titleOptions %}
+                                        <option value="Mr" {{ (title == value) ? 'SELECTED' : '' }}>{{ t('title_'~value, value) }}</option>
+                                    {% endfor %}
+                                </select>
+            </div> <br />
+
+                            <div class="input-group"><span class="input-group-addon"><i class="fa fa-chevron-right"></i></span>
+           
+                                <input class="form-control" name="firstname" id="firstname" type="text" placeholder="{{ t("firstname", "firstname")|title }}" autocomplete="off" value="{{ firstname }}"/>
+                             </div> <br />
+                            
+                             <div class="input-group"><span class="input-group-addon"><i class="fa fa-chevron-right"></i></span>
+                                <input class="form-control" name="lastname" id="lastname" type="text" placeholder="{{ t("lastname", "lastname")|title }}" autocomplete="off" value="{{ lastname }}"/>
+                            </div> <br />
+                            
+                            <div class="input-group"><span class="input-group-addon"><i class="fa fa-chevron-right"></i></span>
+                                <input class="form-control" name="emailAddress" id="emailAddress" type="email" placeholder="{{ t("email_address", "email address") }}" autocomplete="off" value="{{ emailAddress }}"/>
+                            </div> <br />
+                            
+                             <div class="input-group"><span class="input-group-addon"><i class="fa fa-chevron-right"></i></span>
+                                <input class="form-control" class="form-control" name="username" id="username" type="text" placeholder="{{ t("username", "username")|title }}" autocomplete="off" value="{{ username }}"/>
+                           </div> <br />
+                            
+                            {% if SITE_CONFIG_REGISTER_FORM_ALLOW_PASSWORD == 'yes' %}
+                                 <div class="input-group"><span class="input-group-addon"><i class="fa fa-chevron-right"></i></span>
+                                    <input class="form-control" name="password" id="password" type="password" placeholder="{{ t("password", "password")|title }}" autocomplete="off" value="{{ password }}"/>
+                               </div> <br />
+                               <div class="input-group"><span class="input-group-addon"><i class="fa fa-chevron-right"></i></span>
+                                    <input class="form-control" name="password2" id="password2" type="password" placeholder="{{ t("repeat_password", "repeat password")|title }}" autocomplete="off" value="{{ password }}"/>
+                                </div> <br />
+                            {% endif %}
+                            
+                            {% if SITE_CONFIG_REGISTER_FORM_SHOW_CAPTCHA == 'yes' %}
+                           
+                                <div class="input-group" style="display: block; overflow: hidden;">
+                                    {{ CoreHelper.outputCaptcha()|raw }}
+                                </div>
+                           
+                            {% endif %}
+                            
+                           <div class="input-group form-buttons"> <span class="input-group-btn">
+                                <button class="btn btn-signup" role="button" tabindex="99" type="submit" style="width:100%;height:60px;"><i class="fa fa-check"></i>{{ trialUser == false?t("register_page_name", "Register"):t("register_page_name_temp_account", "Convert Temp Account") }}</button>
+                           </span> 
+            </div>
+                        <input type="hidden" value="1" name="submitme"/>
+                    </form>
+    </div>
+    <div class="col-md-6">
+        <div class="col-md-12 form-description">
+            <p>{{ t("register_text", "Please enter your information to register for an account. Your new account password will be sent to your email address.") }}</p>
+            <p>If you don't receive anything, check your spam filters to ensure emails from this site get through. Emails from this site are sent from {{ SITE_CONFIG_DEFAULT_EMAIL_ADDRESS_FROM }}.</p>
+			 {{ HookLoginLoginBoxHtml|raw }}
+        </div>
+    </div>
+</div>
+  </div>  
+
+<!-- Second Step -->
+<div id="panelTwo">
+</div>
+
+<!-- Third Step -->
+<div id="panelThree">
+</div>
+
+</section>
+<!-- Modal -->
+<div id="modalSuccess" class="modal fade" role="dialog" data-keyboard="false" data-backdrop="static">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title"><i class="fa fa-check"></i> Payment Successful</h4>
+      </div>
+      <div class="modal-body">
+        <h1>Thank You!</h1>
+        <p>Your payment was successful.</p>
+        <p>Your account has been created and your new services are active.</p>
+        <br />
+        <p>If you have any questions regarding your new services, please do not hesitate to contact our support team.</p>
+        <br />
+        <p><strong>Thank you for choosing Firedrop.</strong></p>
+        
+        
+        
+      </div>
+      <div class="modal-footer">
+        <a href="/account" class="btn btn-success" role="button">Go to My Account</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,118 @@
+{% extends "partial/firedrop_layout.html.twig" %}
+
+{% block title %}{{ t("contact_page_name", "Contact Us") }}{% endblock %}
+{% block description %}{{ t("contact_meta_description", "Contact us") }}{% endblock %}
+{% block keywords %}{{ t("contact_meta_keywords", "contact, us, questions, queries, file, hosting") }}{% endblock %}
+
+{% block body %}
+    
+      <section id="content_header">
+	<div class="container text-center">
+		<h1>Contact Us</h1>
+    </div>
+</section>
+
+<section id="content_box" class="container text-center">
+	<strong>Do you need our help? Get in touch with us!</strong>
+ 	<p>Use the following form to get in touch with a member of the Firedrop Team.</p>
+    
+</section>
+
+<section class="content_divider container text-center">
+</section>
+
+<div class="col-md-12">
+           
+                    {% if msg_page_errors is defined %}
+                   <div class="alert alert-warning">
+                        <ul class="pageErrors"><li class="no-side-margin"><i class="fa fa-exclamation-triangle margin-right-20"></i>&nbsp;&nbsp;{% if msg_page_errors is defined %}{{ msg_page_errors|join('. ') }}{% endif %}</li></ul></div>
+                  {% elseif msg_page_successes is defined %}
+                    <div class="alert alert-success"><ul class="pageSuccess"><li class="no-side-margin"><i class="fa fa-check-square margin-right-20"></i>&nbsp;&nbsp;{% if msg_page_successes is defined %}{{ msg_page_successes|join('. ') }}{% endif %}</li></ul></div>
+                    {% endif %}
+    </div>
+</div>
+                  
+
+<div id="wrap">
+ <section id="content_box" class="container">
+
+	
+
+    <div class="form" id="contact">   
+        <form id="frmContact" method="post">
+        
+           <div class="col-md-6">
+                    
+                   <div class="input-group"><span class="input-group-addon"><i class="fa fa-user"></i></span>
+                        <input name="fullName" class="form-control" id="fullName" placeholder="Your Name" value="{{ fullName }}" type="text" />
+                    </div> <br />
+                                 <div class="input-group"><span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
+                        <input name="emailAddress" id="emailAddress" value="{{ emailAddress }}" class="form-control" placeholder="Your Email address" type="text" />
+                    </div> <br />
+                               <div class="input-group"><span class="input-group-addon"><i class="fa fa-link"></i></span>
+                            <select id="queryType" name="queryType"  class="form-control" onChange="selectTypeItem(); return false;">
+							 {% for k,queryTypeOption in queryTypes %}
+        						 <option value="{{ k }}" {{ (queryType == k) ? 'SELECTED' : '' }}>{{ queryTypeOption }}</option>
+                                    {% endfor %}
+        					
+        					</select>
+                        </div> <br />
+            
+            </div>
+    
+    
+           <div class="col-md-6">
+            
+                    <div class="input-group"> <span class="input-group-addon"><i class="fa fa-comment-o"></i></span>
+                        <textarea rows="15" class="form-control" id="query" placeholder="Your Query" autocomplete="off" name="query">{{ query }}</textarea>
+                    </div> 
+                    
+    
+                  
+               
+                            {% if SITE_CONFIG_CONTACT_FORM_SHOW_CAPTCHA == 'yes' %}
+                           
+                                <div class="input-group" style="display: block; overflow: hidden;">
+                                 <p>{{ CoreHelper.outputCaptcha()|raw }}</p>
+                              
+                            </div>
+                            {% endif %}
+                          
+							 <input name="submitme" type="hidden" value="1"/>
+                            
+                            <button class="btn btn-danger" id="btnSend" tabindex="99" type="submit" name="submit" style="width:100%;height:60px;">Send</button>
+                          
+      </form>
+    </div>
+</section>
+            
+
+
+
+ 
+    </div>
+						
+							
+                       
+                            
+{% endblock %}
+
+{% block footerjs %}
+<script>
+function selectTypeItem()
+{
+    if ($('#queryType').val() == 'contact_query_type_abuse_report')
+    {
+        if (confirm({{ t('contact_abuse_report_popup_notice', 'Please submit all abuse reports via our dedicated abuse report page. Click OK to continue to it now.')|json_encode()|raw }}))
+        {
+            $('#queryType').val('contact_query_type_site_support');
+            window.location = '{{ WEB_ROOT }}/report_file';
+        }
+        else
+        {
+            $('#queryType').val('contact_query_type_site_support');
+        }
+    }
+}
+</script>
+{% endblock %}

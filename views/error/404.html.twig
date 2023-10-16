@@ -1,0 +1,30 @@
+{% extends "partial/firedrop_layout.html.twig" %}
+
+{% block title %}404{% endblock %}
+{% block description %}{{ t("error_page_404_detail", "Oops - Page Not Found!") }}{% endblock %}
+{% block keywords %}{{ t("error_page_404_meta_keywords", "error, image, picture, pic, img, hosting, sharing, upload, storage, site, website") }}{% endblock %}
+
+{% block body %}
+   <div id="wrap">
+<section id="content_header">
+	<div class="container text-center">
+		<h1>404</h1>
+    </div>
+</section>
+
+
+
+<section class="content_divider container text-center">
+</section>
+
+
+
+
+<section id="content_box" class="container text-center">
+                     	<h2>{{ t("error_page_404_detail", "Oops - Page Not Found!") }}</h2>
+
+                     <a href="{{ CORE_SITE_PATH }}">« {{ t('go_back_to_home', 'Go back to home') }}</a>
+
+</section>
+         </div>
+{% endblock %}

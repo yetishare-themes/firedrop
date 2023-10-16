@@ -1,0 +1,60 @@
+deny from 10.0.0.182
+
+AddDefaultCharset utf-8
+RewriteEngine on
+
+RewriteCond %{HTTP:Authorization} ^(.*)
+RewriteRule ^(.*) - [E=HTTP_CGI_AUTHORIZATION:%1]
+
+RewriteCond	%{REQUEST_FILENAME} !-f
+RewriteRule    ^([0-9A-Za-z]{12})(\/.+|\.html?|$)	/cgi-bin/index.cgi?op=download1&id=$1&fname=$2 [L,QSA]
+
+RewriteRule    ^embed-([0-9A-Za-z]{12})\.html$		/cgi-bin/index.cgi?op=video_embed&file_code=$1 [L]
+RewriteRule    ^embed-([0-9A-Za-z]{12})-(\d+)x(\d+)\.html$		/cgi-bin/index.cgi?op=video_embed&file_code=$1&w=$2&h=$3 [L]
+RewriteRule    ^embedmp3-([0-9A-Za-z]{12})\.html$	/cgi-bin/index.cgi?op=mp3_embed&file_code=$1 [L]
+
+RewriteRule    ^mp3embed-([0-9A-Za-z]{12})\.mp3$	/cgi-bin/index.cgi?op=mp3_embed2&file_code=$1 [L]
+RewriteRule    ^vidembed-([0-9A-Za-z]{12})		/cgi-bin/index.cgi?op=video_embed2&file_code=$1 [L]
+
+RewriteRule    ^box$					/cgi-bin/index_box.cgi [L]
+RewriteRule    ^dl$					/cgi-bin/index.cgi [L]
+RewriteRule    ^download$				/cgi-bin/index.cgi?op=download1 [L]
+RewriteRule    ^webdav					/cgi-bin/webdav.cgi [L]
+
+RewriteRule    ^$					/cgi-bin/index.cgi [L]
+RewriteRule    ^free([0-9]+)\.html$			/cgi-bin/index.cgi?op=register&aff_id=$1 [L]
+#RewriteRule    ^checkfiles\.html$			/cgi-bin/index.cgi?op=checkfiles [L]
+RewriteRule    ^contact\.html$				/cgi-bin/index.cgi?op=contact [L]
+RewriteRule    ^premium\.html$				/cgi-bin/index.cgi?op=payments [L]
+RewriteRule    ^login\.html$				/cgi-bin/index.cgi?op=login [L]
+RewriteRule    ^catalogue(.*)\.html$			/cgi-bin/index.cgi?op=catalogue&date=$1 [L]
+RewriteRule    ^news([0-9]*)\.html$			/cgi-bin/index.cgi?op=news&page=$1 [L]
+RewriteRule    ^n([0-9]+)-.*\.html$			/cgi-bin/index.cgi?op=news_details&news_id=$1 [L]
+RewriteRule    ^faq\.html$				/cgi-bin/index.cgi?op=page&tmpl=faq [L]
+RewriteRule    ^tos\.html$				/cgi-bin/index.cgi?op=page&tmpl=tos [L]
+RewriteRule    ^links\.html$				/cgi-bin/index.cgi?op=links [L]
+RewriteRule    ^make_money\.html$			/cgi-bin/index.cgi?op=make_money [L]
+RewriteRule    ^register\.html$				/cgi-bin/index.cgi?op=register [L]
+RewriteRule    ^forgotpass\.html$			/cgi-bin/index.cgi?op=forgot_pass [L]
+RewriteRule    ^request_money\.html$			/cgi-bin/index.cgi?op=my_request_money [L]
+RewriteRule    ^change_phone\.html$			/cgi-bin/index.cgi?op=my_change_phone [L]
+
+RewriteCond	%{REQUEST_FILENAME} !-f
+RewriteRule    ^pages/([a-z0-9\-\_]+).html		/cgi-bin/index.cgi?op=page&tmpl=$1$2 [L]
+
+RewriteCond	%{QUERY_STRING} .*page=[0-9]+.*
+RewriteRule     ^users/([0-9A-Za-z\-_]{4,64})/?([0-9]+|$)	/cgi-bin/index.cgi [L,NC,QSA]
+
+RewriteCond	%{REQUEST_FILENAME} !-f
+RewriteCond	%{REQUEST_FILENAME} !-d
+RewriteRule     ^users/([0-9A-Za-z\-_]{4,64})/?([0-9]+|$)	/cgi-bin/index.cgi?op=user_public&usr_login=$1&fld_id=$2 [L,NC]
+RewriteRule     ^u/([0-9A-Za-z\-_]+)			/cgi-bin/index.cgi?op=deurl&id=$1 [L,NC]
+RewriteRule     ^d/([0-9A-Za-z\-_]+)                    /cgi-bin/index.cgi?op=deurl&id=$1&mode=2 [L,NC]
+
+RewriteRule    \.pm$					/404.html [L]
+
+ErrorDocument 404 /404.html
+
+<IfModule mod_php5.c>
+        php_flag engine off
+</IfModule>

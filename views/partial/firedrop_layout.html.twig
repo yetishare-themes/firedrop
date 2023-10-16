@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en" dir="{{ SITE_LANGUAGE_DIRECTION == "RTL" ? "RTL" : "LTR" }}" class="direction{{ SITE_LANGUAGE_DIRECTION == "RTL" ? "RTL" : "LTR" }}">
+    <head>
+        <meta charset="utf-8">
+        <title>{{ block('title') }} - {{ SITE_CONFIG_SITE_NAME }}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="description" content="{{ block('description') }}"/>
+        <meta name="keywords" content="{{ block('keywords') }}" />
+        <link href="{{ theme.getFrontendCssPath() }}/bootstrap{{ SITE_LANGUAGE_DIRECTION == "RTL" ? "-rtl" : "" }}.min.css" rel="stylesheet" type="text/css" media="all" />
+		
+		
+		 <link href="{{ theme.getFrontendCssPath() }}/firedrop.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="{{ theme.getFrontendCssPath() }}/packages.min.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="{{ theme.getFrontendCssPath() }}/firedrop-affil.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="{{ theme.getFrontendCssPath() }}/animate.css" rel="stylesheet" type="text/css" media="all" />
+	   <link href="{{ theme.getFrontendCssPath() }}/custom.css" rel="stylesheet">
+        <link href="{{ theme.getFrontendCssPath() }}/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="{{ theme.getFrontendCssPath() }}/css/bootstrap.min.css" rel="stylesheet">
+		 <link href="{{ theme.getFrontendCssPath() }}/responsive.css" rel="stylesheet">
+        <link href="{{ theme.getFrontendCssPath() }}/font-icons/entypo/css/entypo.css" rel="stylesheet">
+		<link href="/themes/firedrop/css/hg.css" rel="stylesheet">
+		<script src="/themes/firedrop/hg/js/jquery-1.10.2.min.js"></script>
+		
+		
+		
+       {% if SITE_CONFIG_SHOW_COOKIE_NOTICE == 'yes' %}
+            <link href="{{ theme.getFrontendCssPath() }}/cookiealert.css" rel="stylesheet">
+        {% endif %}
+       
+        <link rel="icon" type="image/x-icon" href="{{ theme.getFrontendImagePath() }}/favicon/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="180x180" href="{{ theme.getFrontendImagePath() }}/favicon/apple-touch-icon.png"/>
+        <link rel="icon" type="image/png" sizes="32x32" href="{{ theme.getFrontendImagePath() }}/favicon/favicon-32x32.png"/>
+        <link rel="icon" type="image/png" sizes="16x16" href="{{ theme.getFrontendImagePath() }}/favicon/favicon-16x16.png"/>
+        <link rel="manifest" href="{{ theme.getFrontendImagePath() }}/favicon/site.webmanifest"/>
+        <meta name="theme-color" content="#ffffff"/>
+        {{ theme.outputCustomCSSCode()|raw }}
+        <script>
+            var LOGGED_IN = {% if Auth.loggedIn() == 'true' %}true{% else %}false{% endif %};
+        </script>
+        {{ theme.outputHeadJSCode()|raw }}
+        {% if UserHelper.showSiteAdverts() %}
+            {{ SITE_CONFIG_ADVERT_HEAD_TAG_CODE|raw }}
+        {%  endif %}
+		<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8223028084676834"
+     crossorigin="anonymous"></script>
+    </head>
+      <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+   
+ <!-- Navigation -->
+    <nav class="navbar navbar-custom navbar-static-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <a href="/">
+                    <img src="/themes/firedrop/img/fd_logo_big.png" id="firedrop_logo" />
+                </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+                <ul class="nav navbar-nav">
+                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                                      
+                </ul>
+                           
+                             
+                                    {% if Auth.loggedIn() == true %}
+                                        <a class="btn btn-login" role="button" href="{{ CORE_SITE_PATH }}/account">My Files</a>
+										<a class="btn btn-signup" role="button" href="{{ CORE_SITE_PATH }}/account/logout">Logout</a>
+                                    {% else %}
+                                        <a class="btn btn-login" role="button" href="{{ CORE_SITE_PATH }}/account/login"> <span>{{ t("login", "login")|title }}</span> </a>
+                                        {% if SITE_CONFIG_ENABLE_USER_REGISTRATION == 'yes' %}
+                                        <a class="btn btn-signup" role="button" href="{{ CORE_SITE_PATH }}/register">Sign Up</a>
+                                        {% endif %}
+                                    {% endif %}
+                                </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+            {% block body %}{% endblock %}
+
+            <footer class="text-center-xs space--xs">
+                
+                        {% if UserHelper.showSiteAdverts() %}
+                            <div class="col-md-12 text-center advert-wrapper advert-page-footer">
+                                {{ SITE_CONFIG_ADVERT_SITE_FOOTER|raw }}
+                            </div>
+                        {% endif %}
+                        
+                      <section  id="footer_top">
+    	<div class="container">
+        	
+            <div class="col-sm-3 col-xs-3 footer-col">
+            	<h6>Navigation</h6>
+                <ul>
+				
+				
+				 {% if Auth.loggedIn() == true %}
+                                        <li><a href="{{ CORE_SITE_PATH }}/account">My Files</a></li>
+										<li><a href="{{ CORE_SITE_PATH }}/account/edit">Account Settings</a></li>
+									   <li><a href="{{ CORE_SITE_PATH }}/upgrade">Pricing Plans</a></li>
+                                    {% else %}
+                                       <li><a href="{{ CORE_SITE_PATH }}/account/login"> <span>{{ t("login", "login")|title }}</span> </a</li>
+                                        {% if SITE_CONFIG_ENABLE_USER_REGISTRATION == 'yes' %}
+                                        <li><a href="{{ CORE_SITE_PATH }}/register">Sign Up</a></li>
+										<li><a href="{{ CORE_SITE_PATH }}/signup">Pricing Plans</a></li>
+                                        {% endif %}
+                                    {% endif %}
+                    <li><a href="/terms">Terms &amp; Conditions</a></li>
+                    
+
+                </ul>
+            </div>
+            
+            
+            <div class="col-sm-3 col-xs-3 footer-col">
+            	<h6>Firedrop</h6>
+                <ul>
+                     <li><a href="/faq">Knowledge Base</a></li>
+                     <li><a href="/network_status">Network Status</a></li>
+                	<li><a href="/webdav_access">Apps</a></li>
+                	<li><a href="/api">API</a></li>
+                    
+                   
+                </ul>
+             </div>
+             <div class="col-sm-3 col-xs-3 footer-col">   
+            	<h6>Affiliates</h6>
+                <ul>
+                	{% if Auth.loggedIn() == true %}
+                                        <li><a href="{{ CORE_SITE_PATH }}/account/rewards">Make Money</a></li>
+										  {% else %}
+                                       <li><a href="{{ CORE_SITE_PATH }}/rewards">Make Money</a</li>
+                                    {% endif %}
+					 <li><a href="{{ CORE_SITE_PATH }}/resellers">Resellers</a></li>
+                     <li><a href="/dmca">DMCA Policy</a></li>
+                    <li><a href="/privacy">Privacy Policy</a></li>
+                </ul>
+            </div>
+            
+            <div class="col-sm-3 col-xs-3 footer-col ">
+            	<h6>Support</h6>
+                <ul>
+                   
+                    <li><a href="/contact">Contact Us</a></li>
+                    <li><a href="/report_file">Report Abuse</a></li>
+                    <li><a href="/link_checker">Link Checker</a></li>
+             
+                </ul>
+            </div>
+<!--           
+            <div class="col-sm-3 col-xs-0 footer-col-end mob-remove">
+					<p>Firedrop LTD
+                    </p>
+            </div>
+     
+  -->          
+        </div>
+    </section>
+
+            </footer>
+       
+	   
+	   <script src="{{ theme.getFrontendJsPath() }}/bootstrap.min.js"></script>
+    <!-- Plugin JavaScript -->
+    <script src="{{ theme.getFrontendJsPath() }}/jquery.easing.min.js"></script>
+    <!-- Custom Theme JavaScript -->
+  <script src="{{ theme.getFrontendJsPath() }}/grayscale.js"></script>
+	   
+	   
+       
+        {% block footerjs %}{% endblock %}
+       
+    </body>
+</html>

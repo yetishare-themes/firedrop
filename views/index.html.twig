@@ -1,0 +1,110 @@
+{% extends "partial/firedrop.html.twig" %}
+
+{% block title %}{{ t("index_page_name", "Upload Files") }}{% endblock %}
+{% block description %}{{ t("index_meta_description", "Upload, share, track, manage your files in one simple to use file host.") }}{% endblock %}
+{% block keywords %}{{ t("index_meta_keywords", "upload, share, track, file, hosting, host") }}{% endblock %}
+{% block selected_navigation_link %}home{% endblock %}
+
+{% block body %}
+
+
+    <!-- Intro Header -->
+    <div class="jumbotron text-center" id="get_started">
+    
+    	
+          <h1><span style="color:#d61e25;">100GB</span> Free Cloud Storage <br /><small style="color:#1e4759; opacity:0.8;"> The most generous offer in the industry!</small></h1>
+		   {% if Auth.loggedIn() == true %}
+                                        <p><a class="btn btn-red" href="/account?triggerUpload=1" role="button">UPLOAD!</a></p>
+                                    {% else %}
+                                      <p><a class="btn btn-red" href="/signup" role="button">GET STARTED!</a></p>
+                                        {% endif %}
+        
+    </div>
+    
+    
+    
+    
+    <!-- Manage Store Section -->
+    <section id="store_manage" class="container content-section text-center">
+     
+          
+                <h2>Store &amp; Manage all your files</h2>
+                <p>Upload multiple files at once and keep your files safe with us here forever. It's as easy as drag &amp; drop!</p>
+                
+                <img src="/themes/firedrop/img/divider_red.png" class="center-block" />
+                
+                <img src="/themes/firedrop/img/index_drag.png" class="img-responsive center-block" />
+    
+    
+    
+    </section>
+    
+    
+    
+    
+
+    <!-- Share Section -->
+    <section id="share_everyone" class="container-fluid content-section text-center">
+     
+         
+
+                    <h2>Keep your circle updated</h2>
+                    <p>We supply you with all the tools necessary to share your files.</p>
+                    <p>Quickly and easily share your media with friends and family via Facebook or Twitter.</p>
+                    
+                    <img src="/themes/firedrop/img/divider_white.png" class="center-block" />                
+                    <img src="/themes/firedrop/img/index_phone.png" class="img-responsive center-block" />
+
+       
+    </section>
+    
+    
+    <!-- On the Go Section-->
+    <section id="on_go" class="container content-section text-center">
+      
+          
+                <h2>View your documents and media on-the-go!</h2>
+                <p>Wherever you are, you can keep up to date with your documents and media so you are always entertained!</p>
+                
+                <img src="/themes/firedrop/img/divider_red.png" class="center-block" />
+                
+                <img src="/themes/firedrop/img/index_man.png" class="img-responsive center-block" />
+    
+    
+       
+    </section>
+    
+    
+   <!-- Safe Secure Section-->
+    <section id="safe_secure" class="container content-section text-center">
+  
+          
+                <h2>Safe and Secure</h2>
+                <p>Safely store and backup all your essential files. </p>
+                
+                <p>From family photos &amp; videos to important documents you can rely on us to store all your media securely.</p>
+                
+                <img src="/themes/firedrop/img/divider_red.png" class="center-block" />
+    
+    
+  
+    </section>
+    
+
+
+    <!-- Sign Up Section -->
+    <section id="signup" class="container text-center">
+        <div class="row">
+          
+                <h2>What are you waiting for?</h2>
+                
+                <!-- <a class="btn btn-signupnow" href="/upgrade.html" role="button">Sign up Now!</a> -->
+                <!-- <a href="/upgrade.html" class="btn-sign-up" alt="Sign Up!">&nbsp;</a> -->
+               <a class="btn btn-signup-big img-responsive" href="/register">&nbsp;</a>
+                 
+                
+                
+          
+        </div>
+    </section>
+{% endblock %}

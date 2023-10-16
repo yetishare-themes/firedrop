@@ -1,0 +1,41 @@
+{% extends "partial/firedrop_layout.html.twig" %}
+{% block title %}{{ t("page_name", "Network Status") }}{% endblock %}
+{% block description %}{{ t("meta_description", "Network Status") }}{% endblock %}
+{% block keywords %}{{ t("meta_keywords", "netowrk status, system status, up, down") }}{% endblock %}
+
+{% block body %}
+
+
+<div id="wrap">
+<section id="content_header">
+	<div class="container text-center">
+		<h1>Network Status</h1>
+    </div>
+</section>
+
+<section id="content_box" class="container text-center">
+	<strong>Having issues with the Firedrop service? Check our service status.</strong>
+ 	<p>Check the Firedrop service status below. We use this page to report any active problems with the main server or file servers.</p>
+</section>
+
+<section class="content_divider container text-center">
+</section>
+
+
+
+
+<section id="content_box" class="container text-center">
+                     	<h1><i class="fa fa-check"></i> All systems go!</h1>
+
+                        <p>There are currently no known problems with the Firedrop service.</p>
+                        
+                        <p>Have you discovered something we havent? <a href="/contact">Get in touch with us</a>.</p>
+
+
+
+</section>
+         </div>
+  
+
+
+{% endblock %}

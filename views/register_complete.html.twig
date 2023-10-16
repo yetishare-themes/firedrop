@@ -1,0 +1,89 @@
+{% extends "partial/firedrop_layout.html.twig" %}
+
+{% block title %}{{ isTrial==true?t("account_successfully_temp_converted", "Temp Account Converted"):t("account_successfully_registered", "Account Created") }}{% endblock %}
+{% block description %}{{ t("register_complete_meta_description", "Your registration has been completed.") }}{% endblock %}
+{% block keywords %}{{ t("register_complete_meta_keywords", "registration, completed, file, hosting, site") }}{% endblock %}
+
+{% block body %}
+ <section id="content_header">
+	<div class="container text-center">
+		<h1>Registration Complete</h1>
+    </div>
+</section>
+
+<style>
+
+.frmRegInput {
+	height:54px;
+}
+
+
+</style>
+
+<style>
+
+
+
+.step-dot {position: absolute; width: 30px; height: 30px; display: block; background: #f5f5f5; top: 50px; left: 50%; margin-top: -15px; margin-left: -15px; border-radius: 50%; z-index:99;} 
+.step-dot.active {position: absolute; width: 30px; height: 30px; display: block; background: #d52028; top: 50px; left: 50%; margin-top: -15px; margin-left: -15px; border-radius: 50%; z-index:99;} 
+.step-dot.active:after {content: ' '; width: 14px; height: 14px; background: #21495b; border-radius: 50px; position: absolute; top: 8px; left: 8px; } 
+</style>
+
+
+
+<section id="content_box" class="container text-center">
+
+	<!-- Progress Bar -->
+    <div class="row mob-remove" style="margin-bottom:35px;">
+        
+            <div class="col-xs-3 text-center">
+                Select Package
+                <a id="step-1-circle" href="/signup" class="step-dot active"></a>
+            </div>		
+            <div class="col-xs-3 text-center">
+                Create Account
+                <a id="step-2-circle" class="step-dot active"></a>
+            </div>	
+            <div class="col-xs-3 text-center">
+               Verify Email
+                <a id="step-3-circle" class="step-dot active"></a>
+            </div>	
+            <div class="col-xs-3 text-center">
+                Complete!
+                <a id="step-4-circle" class="step-dot active"></a>
+            </div>
+            
+            <div class="col-xs-12">&nbsp;</div>
+    
+            <div class="col-xs-12">
+                <center>
+                <div class="progress" style="border-radius: 0px; height: 8px; box-shadow: none; width:78%;">
+                        <div id="stepBar" class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:100%; background-color:#d52028;"></div>
+                
+                </div>	
+                </center>
+                
+            </div>
+          
+    </div> 
+
+<section class="content_divider container text-center">
+</section>                   
+                   <section id="content_box" class="container text-center">
+	<strong>We've sent an email to your registered email address with your access password. </strong> <br />
+     You may change this at a later date by clicking 'Account Settings' once logged in. <br /> <br />
+ 	<p>
+   
+        <br /> 
+        
+        Thank you for choosing Firedrop!
+        
+        <br /> <br />
+         Continue to <a href="/account/login">Login</a> screen.
+        </p>
+</section>
+<div id="wrap">
+<section class="content_divider container text-center">
+</section>
+    </section>
+{% endblock %}

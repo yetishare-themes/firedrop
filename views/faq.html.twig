@@ -1,0 +1,808 @@
+{% extends "partial/firedrop_layout.html.twig" %}
+
+{% block title %}{{ t("faq_page_name", "FAQ") }}{% endblock %}
+{% block description %}{{ t("faq_meta_description", "Frequently Asked Questions") }}{% endblock %}
+{% block keywords %}{{ t("faq_meta_keywords", "faq, frequently, asked, questions, file, hosting, site") }}{% endblock %}
+{% block selected_navigation_link %}faq{% endblock %}
+
+{% block body %}
+
+    <div class="row support-header">
+	<div class="container text-center">
+    	<img src="/themes/firedrop/img/support-icon.png" class="img-support-header"  />
+    </div>
+</div>
+<div class="row">
+	<div class="container affiliate-overview">
+    
+    	<center>
+        	<h1>Knowledge Base</h1>
+        </center>
+        
+    </div>
+</div>
+
+            <script>
+jQuery(function(){
+
+        jQuery('.list-group-item').click(function(){
+			  
+			  
+			  $('.list-group-item').removeClass("active");
+
+			   $(this).addClass("active");
+			  
+              jQuery('.catlist').hide();
+              jQuery('#cat-'+$(this).attr('target')).fadeIn("slow");
+			  
+        });
+});
+</script>
+
+
+<section id="content_box" class="container">
+
+
+
+ <div class="row">
+ 
+     <div class="col-md-3">
+      <p class="lead">Categories</p>
+      
+      <div class="list-group">
+      	<a class="list-group-item active" target="1" style="cursor:pointer;">General</a><a class="list-group-item" target="2" style="cursor:pointer;">Billing</a><a class="list-group-item" target="12" style="cursor:pointer;">Security</a><a class="list-group-item" target="3" style="cursor:pointer;">Affiliates</a>        
+
+      </div>
+      
+    </div>
+ 
+ 
+    <div id="faq" class="col-md-9">
+      <div class="panel-group" id="accordion">
+ 
+ 
+      	<div id="cat-1"  class="catlist">      		
+                                              
+                  
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">
+                          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion"
+                            href="#collapse-4">
+                                Are my files private?                          </a>
+                        </h4>
+                      </div>
+                      <div id="collapse-4" class="panel-collapse collapse">
+                        <div class="panel-body">
+                                Your files can be public or private - You decide!<br />
+<br />
+You can make files or folders private and even set an access password to protect them further.                        </div>
+                       
+                      </div>
+                    </div>
+                    
+                                              
+                  
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">
+                          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion"
+                            href="#collapse-6">
+                                How much space does my Firedrop account have left?                          </a>
+                        </h4>
+                      </div>
+                      <div id="collapse-6" class="panel-collapse collapse">
+                        <div class="panel-body">
+                                You can view the amount of space you have used - and your remaining space, by clicking the 'Account Settings' tab on the top of the file manager page.                        </div>
+                       
+                      </div>
+                    </div>
+                    
+                                              
+                  
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">
+                          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion"
+                            href="#collapse-17">
+                                Can I share my photos and videos on social media?                          </a>
+                        </h4>
+                      </div>
+                      <div id="collapse-17" class="panel-collapse collapse">
+                        <div class="panel-body">
+                                Yes! You can share your media onto various social media sites.<br /><br />Go into the file manager then click the file you wish to share, on the bottom of the page will be the various social media sites you can upload to. Choose the site and share away!<br />                        </div>
+                       
+                      </div>
+                    </div>
+                    
+                                              
+                  
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">
+                          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion"
+                            href="#collapse-20">
+                                I'd like to start a free account. What do I need to know to get started?                          </a>
+                        </h4>
+                      </div>
+                      <div id="collapse-20" class="panel-collapse collapse">
+                        <div class="panel-body">
+                                Great! <br /><br />All we require is your name and email address. We will then send you a confirmation email with the password. You can change the password at any time once you have logged in, simply by clicking your name and then account settings.<br /><br />Once you have logged in you are ready to upload your files. Simple as that!                        </div>
+                       
+                      </div>
+                    </div>
+                    
+                                              
+                  
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">
+                          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion"
+                            href="#collapse-22">
+                                How do I add or upload files to my Firedrop?                          </a>
+                        </h4>
+                      </div>
+                      <div id="collapse-22" class="panel-collapse collapse">
+                        <div class="panel-body">
+                                It's really easy! Once logged in just click upload at the top of the page. Once the upload screen appears, you can either drag and drop or click the files you wish to upload from your device.                        </div>
+                       
+                      </div>
+                    </div>
+                    
+                                              
+                  
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">
+                          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion"
+                            href="#collapse-26">
+                                 Can I share files or folders with free users if Im on a professional/business account?                          </a>
+                        </h4>
+                      </div>
+                      <div id="collapse-26" class="panel-collapse collapse">
+                        <div class="panel-body">
+                                Yes! If youre happy to share your files, then any one with a Firedrop account can see them too.                        </div>
+                       
+                      </div>
+                    </div>
+                    
+                                              
+                  
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">
+                          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion"
+                            href="#collapse-33">
+                                What type of files can I store or view on Firedrop?                          </a>
+                        </h4>
+                      </div>
+                      <div id="collapse-33" class="panel-collapse collapse">
+                        <div class="panel-body">
+                                You name it you can store it! From things like movies and photos to important documents and internet downloads.                         </div>
+                       
+                      </div>
+                    </div>
+                    
+                                              
+                  
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">
+                          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion"
+                            href="#collapse-34">
+                                How can I organise the files I've uploaded?                          </a>
+                        </h4>
+                      </div>
+                      <div id="collapse-34" class="panel-collapse collapse">
+                        <div class="panel-body">
+                                Just create a folder in the "New Folder" tab at the top of the page, name it for example "Photos" then upload or move all photos to that folder. You can also create as many folders as you like to help keep your account as organised as possible. Its as simple as that!                        </div>
+                       
+                      </div>
+                    </div>
+                    
+                                              
+                  
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">
+                          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion"
+                            href="#collapse-39">
+                                Where does Firedrop store all its users data?                          </a>
+                        </h4>
+                      </div>
+                      <div id="collapse-39" class="panel-collapse collapse">
+                        <div class="panel-body">
+                                Once a file is added to Firedrop, it's then uploaded Firedrop's secure online servers. All files that are stored online by Firedrop are encrypted and kept in secure storage servers. The storage servers are provided by a managed service provider, and they are located in data centres across the world!                        </div>
+                       
+                      </div>
+                    </div>
+                    
+                                              
+                  
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">
+                          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion"
+                            href="#collapse-50">
+                                What's the difference between the Professional and business account?                          </a>
+                        </h4>
+                      </div>
+                      <div id="collapse-50" class="panel-collapse collapse">
+                        <div class="panel-body">
+                                Storage space! The Professional account has 1TB of storage space whilst the Business account has an UNLIMITED storage space. Which is perfect for small to large businesses and corporations, Or even just the average user who doesn't want any restrictions on the amount they upload.                        </div>
+                       
+                      </div>
+                    </div>
+                    
+                                              
+                  
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">
+                          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion"
+                            href="#collapse-51">
+                                Can I upgrade or downgrade my account at any time?                          </a>
+                        </h4>
+                      </div>
+                      <div id="collapse-51" class="panel-collapse collapse">
+                        <div class="panel-body">
+                                Absolutely! If your in need of some extra storage just click the Extend Account on the top of your own Firedrop page. The account will be upgraded instantly from the moment you make the initial payment.<br /><br />If however you wish to downgrade, simply follow the same instructions as above and you will be downgraded to the selected account from when your next payment was due. This means you will remain with the previous amount of storage space until the payment date. <br /><br />Please note, once you have begun your new downgraded account you will be required to remove files to stay within the usage limit of the new account if necessary.                         </div>
+                       
+                      </div>
+                    </div>
+                    
+                                              
+                  
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">
+                          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion"
+                            href="#collapse-53">
+                                Can I upload files from my mobile?                          </a>
+                        </h4>
+                      </div>
+                      <div id="collapse-53" class="panel-collapse collapse">
+                        <div class="panel-body">
+                                Yes! Its as easy as uploading from your desktop. Just click on the file you wish to upload and<br />your good to go.                         </div>
+                       
+                      </div>
+                    </div>
+                    
+                                              
+                  
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">
+                          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion"
+                            href="#collapse-57">
+                                How much is 1TB of storage?                          </a>
+                        </h4>
+                      </div>
+                      <div id="collapse-57" class="panel-collapse collapse">
+                        <div class="panel-body">
+                                The answer to this is A LOT! Here's a few examples of what you can upload to fill 1TB worth of storage space. (actual capacity varies by content)<br /><br />17,000 hours of music.<br />320,000 high resolution digital photos<br />1000 hours of digital video<br />250 movies (2 hours in length)<br /><br />So there is no need to worry about buying new hard drives for your desktop/laptop or new SD cards for you phones/tablets. You can just upload to Firedrop and keep the space on your devices spare.                        </div>
+                       
+                      </div>
+                    </div>
+                    
+                                              
+                  
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">
+                          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion"
+                            href="#collapse-58">
+                                How can I let others view my files?                           </a>
+                        </h4>
+                      </div>
+                      <div id="collapse-58" class="panel-collapse collapse">
+                        <div class="panel-body">
+                                You can let others view files simply by providing them with the link to that file. The link is located at the top of the page when you open up said file. No one else can see these files unless they have the link you provide them.                        </div>
+                       
+                      </div>
+                    </div>
+                    
+                                              
+                  
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">
+                          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion"
+                            href="#collapse-61">
+                                How long will my files stay on Firedrop?                          </a>
+                        </h4>
+                      </div>
+                      <div id="collapse-61" class="panel-collapse collapse">
+                        <div class="panel-body">
+                                As long as you are an active user, then your files will remain stored on Firedrop until you decide  otherwise.                        </div>
+                       
+                      </div>
+                    </div>
+                    
+                                              
+                  
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">
+                          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion"
+                            href="#collapse-62">
+                                How do I add an avatar to my account?                          </a>
+                        </h4>
+                      </div>
+                      <div id="collapse-62" class="panel-collapse collapse">
+                        <div class="panel-body">
+                                To personalise your account, like adding an avatar, simply go onto account settings and choose the avatar you wish to upload.                         </div>
+                       
+                      </div>
+                    </div>
+                    
+                                              
+                  
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">
+                          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion"
+                            href="#collapse-70">
+                                Once I have uploaded my files to Firedrop, can I view/access them from other devices?                          </a>
+                        </h4>
+                      </div>
+                      <div id="collapse-70" class="panel-collapse collapse">
+                        <div class="panel-body">
+                                Of course! Firedrop allows you to access your files from anywhere at any time. all you need is an internet connection.                        </div>
+                       
+                      </div>
+                    </div>
+                    
+                                              
+                  
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">
+                          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion"
+                            href="#collapse-71">
+                                If I need to downgrade my account, will I lose my files?                          </a>
+                        </h4>
+                      </div>
+                      <div id="collapse-71" class="panel-collapse collapse">
+                        <div class="panel-body">
+                                Absolutely not! Your files are safe and secure on your account. However, if you wish to upload more files you will need to either upgrade your account or download the older files to be within the usage limit of the new account.                        </div>
+                       
+                      </div>
+                    </div>
+                    
+                                              
+                  
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">
+                          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion"
+                            href="#collapse-74">
+                                What do I do if Firedrop reports an error, wont launch, or is stuck uploading?                          </a>
+                        </h4>
+                      </div>
+                      <div id="collapse-74" class="panel-collapse collapse">
+                        <div class="panel-body">
+                                Don't worry! All you need to do is simply refresh the page then check to see if the file was uploaded. If not then retry uploading.<br /><br />If the problem persists then feel free to submit a ticked or contact our support line. We will aim to resolve the issue within 24 hours.                        </div>
+                       
+                      </div>
+                    </div>
+                    
+                                              
+                  
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">
+                          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion"
+                            href="#collapse-76">
+                                I've just created a new account, When can i start uploading my files?                          </a>
+                        </h4>
+                      </div>
+                      <div id="collapse-76" class="panel-collapse collapse">
+                        <div class="panel-body">
+                                Straight away! As soon as you create a new account you will be directed to your own Firedrop page. Once your there, you can begin uploading.                        </div>
+                       
+                      </div>
+                    </div>
+                    
+                                              
+                  
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">
+                          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion"
+                            href="#collapse-77">
+                                I have some new ideas of how to improve Firedrop, where can I express them?                          </a>
+                        </h4>
+                      </div>
+                      <div id="collapse-77" class="panel-collapse collapse">
+                        <div class="panel-body">
+                                Great! We encourage all of our users to tell us how we can improve Firedrop for them. We will be shortly introducing a Change Log, where all of our users can tell us what they think will improve their experience.<br /><br />For now you can just email us at <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="790e1c1b14180a0d1c0b391f100b1c1d0b1609571a1614">[email&#160;protected]</a>                        </div>
+                       
+                      </div>
+                    </div>
+                    
+                                              
+                  
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">
+                          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion"
+                            href="#collapse-79">
+                                What does Firedrop have in store for it's users in the future?                          </a>
+                        </h4>
+                      </div>
+                      <div id="collapse-79" class="panel-collapse collapse">
+                        <div class="panel-body">
+                                We have many ideas and plans for Firedrop in the future, currently we are working on something new and exciting. We will announce what's in store soon!                        </div>
+                       
+                      </div>
+                    </div>
+                    
+                                        
+              </div>
+         <div id="cat-2" style="display:none;" class="catlist">      		
+                                              
+                  
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">
+                          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion"
+                            href="#collapse-1">
+                                Will I be tied into a contract with subscription payments?                          </a>
+                        </h4>
+                      </div>
+                      <div id="collapse-1" class="panel-collapse collapse">
+                        <div class="panel-body">
+                                Absolutely not!<br/>
+<br />
+You are free to cancel your account at any time - Though we are sure you will not want to!<br />
+<br />
+If you do decide to cancel, your account will revert to the Free Account limits when your next scheduled payment was suppose to be paid.                        </div>
+                       
+                      </div>
+                    </div>
+                    
+                                              
+                  
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">
+                          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion"
+                            href="#collapse-18">
+                                If i miss a payment on my Pro/Business account, will my files get deleted?                          </a>
+                        </h4>
+                      </div>
+                      <div id="collapse-18" class="panel-collapse collapse">
+                        <div class="panel-body">
+                                Absolutely not! <br /><br />If the payment does not go through we will then try twice more. Failing this we will revert your account to a free account. <br /><br />Your files will remain on your free account until we can resolve the payment issue. <br /><br />If you wish to remain on the free account, you will be then required to remove files to stay within the free accounts usage limit.                        </div>
+                       
+                      </div>
+                    </div>
+                    
+                                              
+                  
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">
+                          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion"
+                            href="#collapse-19">
+                                Do I need to submit credit card information for a free account?                          </a>
+                        </h4>
+                      </div>
+                      <div id="collapse-19" class="panel-collapse collapse">
+                        <div class="panel-body">
+                                With us, free means free! Firedrop does not require any payment details or commitments.                         </div>
+                       
+                      </div>
+                    </div>
+                    
+                                              
+                  
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">
+                          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion"
+                            href="#collapse-35">
+                                Can I subscribe for more than one year and pay in advance?                          </a>
+                        </h4>
+                      </div>
+                      <div id="collapse-35" class="panel-collapse collapse">
+                        <div class="panel-body">
+                                Our current Firedrop plans are available in monthly and annual subscription periods. At this time we do not offer an option to purchase consecutive monthly or annual subscriptions up front.                        </div>
+                       
+                      </div>
+                    </div>
+                    
+                                              
+                  
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">
+                          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion"
+                            href="#collapse-41">
+                                If Firedrop increases its pricing plans, will that affect my current plan?                          </a>
+                        </h4>
+                      </div>
+                      <div id="collapse-41" class="panel-collapse collapse">
+                        <div class="panel-body">
+                                Nope! If we ever increase our pricing plans, all current users will remain on their agreed price when they first registered. The increased plans will only affect users who register after the new pricing infrastructure is implemented.                         </div>
+                       
+                      </div>
+                    </div>
+                    
+                                              
+                  
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">
+                          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion"
+                            href="#collapse-52">
+                                What payment methods do you accept?                          </a>
+                        </h4>
+                      </div>
+                      <div id="collapse-52" class="panel-collapse collapse">
+                        <div class="panel-body">
+                                We currently accept payment via the following Credit & Debit cards:
+Visa, Mastercard, American Express and Discover.
+
+We are currently working to accept Bitcoin payments - Stay tuned!                        </div>
+                       
+                      </div>
+                    </div>
+                    
+                                              
+                  
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">
+                          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion"
+                            href="#collapse-59">
+                                How do I cancel my paid subscription?                          </a>
+                        </h4>
+                      </div>
+                      <div id="collapse-59" class="panel-collapse collapse">
+                        <div class="panel-body">
+                                If you wish to cancel your active subscription, please visit the <a href="https://firedrop.com/cancel.html">Subscription Cancellations</a> area.
+<br/> <br />
+Remember to leave us a comment or two on how we could improve our service in the future.
+<br/> <br />
+We're sorry to hear that you want to leave. You're welcome back any time!                        </div>
+                       
+                      </div>
+                    </div>
+                    
+                                              
+                  
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">
+                          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion"
+                            href="#collapse-78">
+                                How can I keep track of my subscription information?                          </a>
+                        </h4>
+                      </div>
+                      <div id="collapse-78" class="panel-collapse collapse">
+                        <div class="panel-body">
+                                You can keep track of the subscription information such as account type and expiry date in the account edit page; firedrop.com/account_edit.html. Once on this page just click "Finance" and the information will be made available.                         </div>
+                       
+                      </div>
+                    </div>
+                    
+                                        
+              </div>
+         <div id="cat-12" style="display:none;" class="catlist">      		
+                                              
+                  
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">
+                          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion"
+                            href="#collapse-43">
+                                How do I change my password?                          </a>
+                        </h4>
+                      </div>
+                      <div id="collapse-43" class="panel-collapse collapse">
+                        <div class="panel-body">
+                                You can change your password simply by clicking on the account settings tab at the top of the Firedrop page once you have logged in. Once you have done that, click update account and your good to go.                        </div>
+                       
+                      </div>
+                    </div>
+                    
+                                              
+                  
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">
+                          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion"
+                            href="#collapse-45">
+                                How do I remove a file or folder?                          </a>
+                        </h4>
+                      </div>
+                      <div id="collapse-45" class="panel-collapse collapse">
+                        <div class="panel-body">
+                                You can remove a folder simply by right clicking the folder and clicking delete. To remove the file, simply click the file you wish to delete and then click the delete button on the files page. Remember there is a trash can, so you can restore any files you may have deleted accidentally.                        </div>
+                       
+                      </div>
+                    </div>
+                    
+                                              
+                  
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">
+                          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion"
+                            href="#collapse-48">
+                                How do I make sure my Firedrop is secure?                          </a>
+                        </h4>
+                      </div>
+                      <div id="collapse-48" class="panel-collapse collapse">
+                        <div class="panel-body">
+                                You can protect your Firedrop by first choosing a secure password. Something not associated with you like name or DOB. Try using upper case letters and numbers in the password too. <br /><br />You can also make sure all your files are password protected simply by right clicking the file or folder, edit, then create password. Also make sure the files are set to private and are not shared. This information will be in the file edit page when you right click the file.                         </div>
+                       
+                      </div>
+                    </div>
+                    
+                                              
+                  
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">
+                          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion"
+                            href="#collapse-49">
+                                Where is Firedrop's Copyright policy?                          </a>
+                        </h4>
+                      </div>
+                      <div id="collapse-49" class="panel-collapse collapse">
+                        <div class="panel-body">
+                                You can find our Copyright policy here - https://firedrop.com/dmca.html                        </div>
+                       
+                      </div>
+                    </div>
+                    
+                                              
+                  
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">
+                          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion"
+                            href="#collapse-68">
+                                How secure is Firedrop?                          </a>
+                        </h4>
+                      </div>
+                      <div id="collapse-68" class="panel-collapse collapse">
+                        <div class="panel-body">
+                                Here at Firedrop, security is our top priority. We have an experienced and skilled security team using the best tools and practices available to maintain Firedrop, and you can be assured that we have implemented various levels of security to protect your files. <br /><br />Other Firedrop users can not see your files in Firedrop unless you deliberately share them to public. Firedrop employees are prohibited from viewing the content of the files you store in your account. Employees may access file metadata if legally required to do so, or for technical support reasons. But we will exhaust all avenues before this is required.                         </div>
+                       
+                      </div>
+                    </div>
+                    
+                                              
+                  
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">
+                          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion"
+                            href="#collapse-69">
+                                How do I permanently delete my account?                          </a>
+                        </h4>
+                      </div>
+                      <div id="collapse-69" class="panel-collapse collapse">
+                        <div class="panel-body">
+                                To permanently delete your account, submit a support ticket and we will delete the account within 24 hours. Please remember to remove any files as they will be permanently deleted.                         </div>
+                       
+                      </div>
+                    </div>
+                    
+                                              
+                  
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">
+                          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion"
+                            href="#collapse-72">
+                                What if I find my copyrighted material on Firedrop?                          </a>
+                        </h4>
+                      </div>
+                      <div id="collapse-72" class="panel-collapse collapse">
+                        <div class="panel-body">
+                                If you feel you have found copyrighted material on Firedrop, you can notify us by submitting a support ticket or by sending a written request to Firedrop. A support ticket can be submitted via - firedrop.com/support.html. The written request should be sent to the following address: -<br /><br />Firedrop LTD<br />17 Park Street<br />Mid Glamorgan<br />CF37 1SN<br /><br />All notices should comply with the notification requirements of the Digital Millennium Copyright Act (DMCA) – http://www.copyright.gov/legislation/dmca.pdf. You MUST provide the complete set of information below. Once your request is submitted with the proper information we will process it in a timely fashion.<br /><br />1. Identify yourself as either: a) The owner of copyrighted work(s), or b) A person "authorized to act on behalf of the owner of an exclusive right that is allegedly infringed."<br />2. Identify the copyrighted work claimed to have been infringed<br />3. Identify the material that is claimed to be infringing or to be the subject of the infringing activity and that is to be removed or access to which is to be disabled, as well as information reasonably sufficient to permit Firedrop to locate the material<br />4. Provide contact information that is reasonably sufficient to permit us to contact you, such as an address, telephone number, and a valid electronic mail address.<br />5. State that you have a firm belief that use of the material in question is not authorized by the copyright owner, its agents, or the law.<br />6. State that the information in the notification is accurate, and under penalty of perjury, that the complaining party is authorized to act on behalf of the owner of an exclusive right that is allegedly infringed.<br /><br />LEGAL NOTICE FOR ALL ABUSE REQUESTS<br />You should be aware that, under the DMCA, claimants who make misrepresentations concerning copyright infringement may be liable for damages incurred as a result of the removal or blocking of the material in addition to court costs, and attorneys fees.                         </div>
+                       
+                      </div>
+                    </div>
+                    
+                                              
+                  
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">
+                          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion"
+                            href="#collapse-73">
+                                Can I protect my folders?                          </a>
+                        </h4>
+                      </div>
+                      <div id="collapse-73" class="panel-collapse collapse">
+                        <div class="panel-body">
+                                Yes! simply by right clicking the chosen folder then clicking edit, you can delete, rename, give it a password or choose whether it's shared or private.                        </div>
+                       
+                      </div>
+                    </div>
+                    
+                                              
+                  
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">
+                          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion"
+                            href="#collapse-75">
+                                Why were my links removed?                          </a>
+                        </h4>
+                      </div>
+                      <div id="collapse-75" class="panel-collapse collapse">
+                        <div class="panel-body">
+                                Only in rare circumstances will we remove links. If you have a link removed it could be due to a number of reasons. One of them being a copyright infringement. If it is a copyright issue then we are legally obligated to remove that file/link. Another reason for a removed file is if the file has been reported or flagged for abuse, as referred to in out T&C's.                         </div>
+                       
+                      </div>
+                    </div>
+                    
+                                        
+              </div>
+         <div id="cat-3" style="display:none;" class="catlist">      		
+                                              
+                  
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">
+                          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion"
+                            href="#collapse-2">
+                                How long does my code stay active?                          </a>
+                        </h4>
+                      </div>
+                      <div id="collapse-2" class="panel-collapse collapse">
+                        <div class="panel-body">
+                                Your affiliate code will last for a whopping 30 days! 
+<br />
+This means that your referral has up to 30 days to make the purchase for you to make a commission.                        </div>
+                       
+                      </div>
+                    </div>
+                    
+                                              
+                  
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">
+                          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion"
+                            href="#collapse-80">
+                                What is the minimum payout?                          </a>
+                        </h4>
+                      </div>
+                      <div id="collapse-80" class="panel-collapse collapse">
+                        <div class="panel-body">
+                                The minimum payout threshold is $50. <br /> 
+You can request a payment at any time once of have reached the threshold!                        </div>
+                       
+                      </div>
+                    </div>
+                    
+                                        
+              </div>
+              
+
+
+
+
+
+  </div>
+
+
+
+</section>
+
+
+
+
+
+      <section class="container text-center">   
+        <p class="alert alert-warning">Can't find the answer you're looking for? <a href="/contact">Contact Us</a> and a member of staff will  be there to help.</p> 
+      </section>    
+{% endblock %}

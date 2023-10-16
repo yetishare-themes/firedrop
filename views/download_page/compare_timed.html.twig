@@ -1,0 +1,1521 @@
+{% extends "partial/layout.html.twig" %}
+
+{% block title %}{{ file.originalFilename }}{% endblock %}
+{% block description %}{{ file.description|length > 0 ? file.description|slice(0, 250) : t("file_download_description", "Download file")~' - '~file.originalFilename }}{% endblock %}
+{% block keywords %}{{ file.getFileKeywords() }}{% endblock %}
+
+{% block body %}
+    <style> 
+.blocktxt {
+    margin: 20px auto;
+    text-align: left;
+}
+.blocktxt .title {
+    background-color: #eee;
+    padding: 10px 15px;
+    font-size: 16px;
+    color: #000;
+}
+.blocktxt .content {
+    border: 1px solid #eee;
+    padding: 10px;
+    background-color: #fafafa;
+    color: #000;
+}
+.antivirus {
+    margin: 10px auto;
+    border: 1px solid #eee;
+    background-color: #fafafa;
+}
+.antivirus .vimg {
+    float: left;
+    background-color: #ffffff;
+    padding: 15px;
+    height: 100px;
+    border-right: 1px solid #eee;
+    line-height: 100px;
+    width: 150px;
+}
+.antivirus .content {
+    text-align: left;
+    margin: 20px 0 0 160px;
+}
+.antivirus .content span {
+    display: block;
+    font-size: 19px;
+    font-family: Poppins,sans-serif;
+    margin: 0 auto 5px;
+}
+.FI {
+    margin: 10px auto;
+    border: 1px solid #eee;
+    background-color: #fafafa;
+	width: 50%;
+}
+.FI .vimg {
+    float: left;
+    background-color: #ffffff;
+    padding: 15px;
+    height: 250px;
+    border-right: 1px solid #eee;
+    line-height: 100px;
+    width: 150px;
+}
+.FI .content {
+    text-align: left;
+    margin: 20px 0 0 160px;
+}
+.FI .content span {
+    display: block;
+    font-size: 19px;
+    font-family: Poppins,sans-serif;
+    margin: 0 auto 5px;
+}
+@import url(https://fonts.googleapis.com/css?family=Lato:400,700);
+
+.dl-continue .next .para .btn-dl-first {
+    margin-left: 0px !important;
+	width: fit-content;
+}
+
+#price {
+  text-align: center;
+}
+
+.plan {
+  display: inline-block;
+  margin: 10px 1%;
+  font-family: 'Lato', Arial, sans-serif;
+}
+
+.plan-inner {
+  background-color: #fafafa;
+  margin: 0 auto;
+  min-width: 280px;
+  max-width: 100%;
+  position:relative;
+}
+
+.entry-title {
+  background: #53CFE9;
+  height: 140px;
+  position: relative;
+  text-align: center;
+  color: #fff;
+  margin-bottom: 30px;
+}
+
+.entry-title>h3 {
+  background: #20BADA;
+  font-size: 20px;
+  padding: 5px 0;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin: 0;
+}
+
+.entry-title .price {
+  position: absolute;
+  bottom: -25px;
+  background: #20BADA;
+  height: 95px;
+  width: 115px;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  border-radius: 50px;
+  border: 5px solid #fff;
+  line-height: 80px;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.price span {
+  position: absolute;
+  font-size: 12px;
+  bottom: -20px;
+  left: 30px;
+  font-weight: 400;
+}
+
+.entry-content {
+  color: #323232;
+  background-color: #fafafa;
+}
+
+.entry-content ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-align: center;
+}
+
+.entry-content li {
+  border-bottom: 1px solid #E5E5E5;
+  padding: 10px 0;
+}
+
+.entry-content li:last-child {
+  border: none;
+}
+
+.btn a {
+  text-decoration: none
+}
+.hot {
+    position: absolute;
+    top: -7px;
+    background: #F80;
+    color: #fff;
+    text-transform: uppercase;
+    z-index: 2;
+    padding: 2px 5px;
+    font-size: 9px;
+    border-radius: 2px;
+    right: 10px;
+    font-weight: 700;
+}
+.basic .entry-title {
+  background: #75DDD9;
+}
+
+.basic .entry-title > h3 {
+  background: #44CBC6;
+}
+
+.basic .price {
+  background: #44CBC6;
+}
+
+.standard .entry-title {
+  background: #4484c1;
+}
+
+.standard .entry-title > h3 {
+  background: #3772aa;
+}
+
+.standard .price {
+  background: #3772aa;
+}
+
+.ultimite .entry-title > h3 {
+  background: #DD4B5E;
+}
+
+.ultimite .entry-title {
+  background: #F75C70;
+}
+
+.ultimite .price {
+  background: #DD4B5E;
+}
+.entry-content ul li:before {
+    content: "\f17b";
+    font-family: LineAwesome;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    font-size: 20px;
+    color: #58D68D;
+    margin-right: 5px;
+    position: relative;
+    top: 2px;
+	font-size: 14px;
+    margin-bottom: 10px;
+}
+.reportfile {
+    background-color: #f2dede;
+    border: 1px solid #ebccd1;
+    color: #a94442;
+    display: block;
+    font-size: 16px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    text-decoration: none;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+}
+@media screen and (max-width: 600px) {
+.FI {
+    margin: 10px auto;
+    border: 1px solid #eee;
+    background-color: #fafafa;
+	width: 100%;
+}
+.FI .vimg {
+display: none;
+}
+.FI .content {
+    text-align: center;
+    margin: 0 0 0 0;
+}
+.FI .content span {
+    display: block;
+    font-size: 15px;
+    font-family: Poppins,sans-serif;
+    margin: 0 auto 5px;
+}
+.dl-continue .next .para .btn-dl-first {
+	margin-top: 50px !important;
+    margin-left: 25px;
+	width: 100%;
+}
+}
+.dl-continue .next .para .btn-dl-first {
+	margin-top: 95px !important;
+}
+.dl-continue {
+	height: auto;
+}
+
+.share {
+   height: 50px
+   left: 0px;
+   top:150px;
+}
+.wrapper {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
+.speedometer {
+  overflow: hidden;
+  width: 210px;
+  height: 120px;
+  position: relative;
+  margin: 20px auto;
+}
+.speedometer::after {
+  background-color: #fff;
+  height: 10px;
+  width: 130px;
+  margin: 0 auto;
+  left: 0;
+  bottom: 0;
+  content: '';
+  position: absolute;
+  border-radius: 1px;
+  z-index: 40;
+  right: 0;
+}
+.speedometer .dial {
+  padding-top: 20px;
+  overflow: hidden;
+}
+.speedometer .needle {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 2px;
+  width: 12px;
+  margin: 0 auto;
+  z-index: 50;
+}
+.speedometer .needle .inner {
+  background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMSBUaW55Ly9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLXRpbnkuZHRkIj48c3ZnIHZlcnNpb249IjEuMSIgYmFzZVByb2ZpbGU9InRpbnkiIGlkPSJMYXllcl8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjEycHgiIGhlaWdodD0iMTEzcHgiIHZpZXdCb3g9IjAgMCAxMiAxMTMiIHhtbDpzcGFjZT0icHJlc2VydmUiPjxwYXRoIGZpbGw9IiM2NzY3NjciIGQ9Ik0wLjA2NywxMDYuMzQ0Yy0wLjAxNiwwLjEzNS0wLjAyNCwwLjU0My0wLjAzMiwwLjY4MWwtMC4wMTIsMC40MTFoMC4wMDVjLTAuMDAxLDAtMC4wMTEtMC4xNDYtMC4wMTEtMC4wODFjMC4wMDYsMy4xOSwyLjY4OSw1LjYzNSw1Ljk5NSw1LjYyOWMzLjMwNC0wLjAwNyw1Ljk3OC0yLjY2Niw1Ljk3MS01Ljg1NmMtMC4wMDEtMC40MTUtMC4wNS0wLjg1My0wLjEzNi0xLjI0Mkw2LjAxMiwwLjEyNEwwLjA2NywxMDYuMzQ0eiIvPjwvc3ZnPg==);
+  background-size: 100%;
+  height: 112px;
+  width: 12px;
+  position: relative;
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+  -webkit-transform-origin: bottom center;
+          transform-origin: bottom center;
+}
+.speedometer .needle .top,
+.speedometer .needle .bottom {
+  display: none;
+  position: absolute;
+}
+.speedometer .needle .top {
+  border-color: transparent;
+}
+.speedometer .needle .bottom {
+  background-color: transparent;
+}
+.speedometer .bar {
+  position: relative;
+  overflow: hidden;
+  height: 95px;
+}
+.speedometer .half-circle {
+  height: 95px;
+  width: 190px;
+  border-radius: 190px 190px 0 0;
+  margin: 0 auto;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  -webkit-transform-origin: bottom center;
+          transform-origin: bottom center;
+}
+.speedometer .half-circle-bg {
+  background-color: #e0f3fc;
+  z-index: 10;
+}
+.speedometer .half-circle-speed {
+  background-color: #0590dd;
+  z-index: 20;
+}
+.speedometer .half-circle-cover {
+  background-color: #fff;
+  height: 65px;
+  width: 130px;
+  border-radius: 190px 190px 0 0;
+  background: #fff;
+  margin: 0 auto;
+  top: auto;
+  bottom: 0;
+  z-index: 30;
+}
+.speedometer .animated {
+  -webkit-transform: rotate(-180deg);
+          transform: rotate(-180deg);
+  -webkit-transform-origin: bottom center;
+          transform-origin: bottom center;
+  -webkit-animation-duration: 6s;
+          animation-duration: 6s;
+  -webkit-animation-iteration-count: 1;
+          animation-iteration-count: 1;
+  -webkit-animation-timing-function: ease-out;
+          animation-timing-function: ease-out;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+[class*='sm'] .speedometer {
+  width: 130.2px;
+  height: 74.4px;
+  position: relative;
+  margin: 20px auto;
+}
+[class*='sm'] .speedometer::after {
+  height: 6.2px;
+  width: 80.6px;
+}
+[class*='sm'] .speedometer .dial {
+  padding-top: 12.4px;
+}
+[class*='sm'] .speedometer .bar {
+  position: relative;
+  overflow: hidden;
+  height: 58.9px;
+}
+[class*='sm'] .speedometer .half-circle {
+  height: 58.9px;
+  width: 117.8px;
+  border-radius: 117.8px 117.8px 0 0;
+  -webkit-transform-origin: bottom center;
+          transform-origin: bottom center;
+}
+[class*='sm'] .speedometer .half-circle-cover {
+  height: 40.3px;
+  width: 80.6px;
+  border-radius: 117.8px 117.8px 0 0;
+}
+[class*='sm'] .speedometer .needle {
+  width: 7.44px;
+}
+[class*='sm'] .speedometer .needle .inner {
+  height: 69.44px;
+  width: 7.44px;
+}
+
+.scaled-90 .speedometer {
+  width: 189px;
+  height: 108px;
+  position: relative;
+  margin: 20px auto;
+}
+.scaled-90 .speedometer::after {
+  height: 9px;
+  width: 117px;
+}
+.scaled-90 .speedometer .dial {
+  padding-top: 18px;
+}
+.scaled-90 .speedometer .bar {
+  position: relative;
+  overflow: hidden;
+  height: 85.5px;
+}
+.scaled-90 .speedometer .half-circle {
+  height: 85.5px;
+  width: 171px;
+  border-radius: 171px 171px 0 0;
+  -webkit-transform-origin: bottom center;
+          transform-origin: bottom center;
+}
+.scaled-90 .speedometer .half-circle-cover {
+  height: 58.5px;
+  width: 117px;
+  border-radius: 171px 171px 0 0;
+}
+.scaled-90 .speedometer .needle {
+  width: 10.8px;
+}
+.scaled-90 .speedometer .needle .inner {
+  height: 100.8px;
+  width: 10.8px;
+}
+
+.scaled-80 .speedometer {
+  width: 168px;
+  height: 96px;
+  position: relative;
+  margin: 20px auto;
+}
+.scaled-80 .speedometer::after {
+  height: 8px;
+  width: 104px;
+}
+.scaled-80 .speedometer .dial {
+  padding-top: 16px;
+}
+.scaled-80 .speedometer .bar {
+  position: relative;
+  overflow: hidden;
+  height: 76px;
+}
+.scaled-80 .speedometer .half-circle {
+  height: 76px;
+  width: 152px;
+  border-radius: 152px 152px 0 0;
+  -webkit-transform-origin: bottom center;
+          transform-origin: bottom center;
+}
+.scaled-80 .speedometer .half-circle-cover {
+  height: 52px;
+  width: 104px;
+  border-radius: 152px 152px 0 0;
+}
+.scaled-80 .speedometer .needle {
+  width: 9.6px;
+}
+.scaled-80 .speedometer .needle .inner {
+  height: 89.6px;
+  width: 9.6px;
+}
+
+.scaled-70 .speedometer {
+  width: 147px;
+  height: 84px;
+  position: relative;
+  margin: 20px auto;
+}
+.scaled-70 .speedometer::after {
+  height: 7px;
+  width: 91px;
+}
+.scaled-70 .speedometer .dial {
+  padding-top: 14px;
+}
+.scaled-70 .speedometer .bar {
+  position: relative;
+  overflow: hidden;
+  height: 66.5px;
+}
+.scaled-70 .speedometer .half-circle {
+  height: 66.5px;
+  width: 133px;
+  border-radius: 133px 133px 0 0;
+  -webkit-transform-origin: bottom center;
+          transform-origin: bottom center;
+}
+.scaled-70 .speedometer .half-circle-cover {
+  height: 45.5px;
+  width: 91px;
+  border-radius: 133px 133px 0 0;
+}
+.scaled-70 .speedometer .needle {
+  width: 8.4px;
+}
+.scaled-70 .speedometer .needle .inner {
+  height: 78.4px;
+  width: 8.4px;
+}
+
+.scaled-60 .speedometer {
+  width: 126px;
+  height: 72px;
+  position: relative;
+  margin: 20px auto;
+}
+.scaled-60 .speedometer::after {
+  height: 6px;
+  width: 78px;
+}
+.scaled-60 .speedometer .dial {
+  padding-top: 12px;
+}
+.scaled-60 .speedometer .bar {
+  position: relative;
+  overflow: hidden;
+  height: 57px;
+}
+.scaled-60 .speedometer .half-circle {
+  height: 57px;
+  width: 114px;
+  border-radius: 114px 114px 0 0;
+  -webkit-transform-origin: bottom center;
+          transform-origin: bottom center;
+}
+.scaled-60 .speedometer .half-circle-cover {
+  height: 39px;
+  width: 78px;
+  border-radius: 114px 114px 0 0;
+}
+.scaled-60 .speedometer .needle {
+  width: 7.2px;
+}
+.scaled-60 .speedometer .needle .inner {
+  height: 67.2px;
+  width: 7.2px;
+}
+
+.scaled-50 .speedometer {
+  width: 105px;
+  height: 60px;
+  position: relative;
+  margin: 20px auto;
+}
+.scaled-50 .speedometer::after {
+  height: 5px;
+  width: 65px;
+}
+.scaled-50 .speedometer .dial {
+  padding-top: 10px;
+}
+.scaled-50 .speedometer .bar {
+  position: relative;
+  overflow: hidden;
+  height: 47.5px;
+}
+.scaled-50 .speedometer .half-circle {
+  height: 47.5px;
+  width: 95px;
+  border-radius: 95px 95px 0 0;
+  -webkit-transform-origin: bottom center;
+          transform-origin: bottom center;
+}
+.scaled-50 .speedometer .half-circle-cover {
+  height: 32.5px;
+  width: 65px;
+  border-radius: 95px 95px 0 0;
+}
+.scaled-50 .speedometer .needle {
+  width: 6px;
+}
+.scaled-50 .speedometer .needle .inner {
+  height: 56px;
+  width: 6px;
+}
+
+.percent-100 .speedometer.play .animated,
+.percent-100-sm .speedometer.play .animated {
+  -webkit-animation-name: to-100;
+          animation-name: to-100;
+}
+
+.percent-100-static .animated,
+.percent-100-static-sm .animated {
+  -webkit-animation: none;
+          animation: none;
+  -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+}
+
+.percent-66 .speedometer.play .animated,
+.percent-66-sm .speedometer.play .animated {
+  -webkit-animation-name: to-66;
+          animation-name: to-66;
+}
+
+.percent-66-static .animated,
+.percent-66-static-sm .animated {
+  -webkit-animation: none;
+          animation: none;
+  -webkit-transform: rotate(-60.12deg);
+          transform: rotate(-60.12deg);
+}
+.US_F_ADS {
+    z-index: 9999999999999;
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%,-35%);
+}
+.Close_F_ADS {
+    position: absolute;
+    right: -15px;
+    top: -17px;
+    width: 17px;
+    height: 32px;
+    opacity: .5;
+    z-index: 999999999999;
+    background: #000;
+    width: 32px;
+    border-radius: 20px;
+}
+.Close_F_ADS:before {
+    transform: rotate(45deg);
+}
+.Close_F_ADS:after {
+    transform: rotate(-45deg);
+}
+.Close_F_ADS:before, .Close_F_ADS:after {
+    position: absolute;
+    left: 15px;
+    content: ' ';
+    height: 33px;
+    width: 3px;
+    background-color: #fff;
+}
+.US_F_ADS:hover .Close_F_ADS, .Close_F_ADS:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+@media (max-width:600px) {
+	.US_F_ADS {
+    z-index: 9999999999999;
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%,-35%);
+    max-width: 100% !important;
+	}
+	.Close_F_ADS {
+    position: absolute;
+    right: -5px !important;
+    top: -17px;
+    width: 17px;
+    height: 32px;
+    opacity: .5;
+    z-index: 999999999999;
+    background: #000;
+    width: 32px;
+    border-radius: 20px;
+}
+}
+.percent-60 .speedometer.play .animated,
+.percent-60-sm .speedometer.play .animated {
+  -webkit-animation-name: to-60;
+          animation-name: to-60;
+}
+
+.percent-60-static .animated,
+.percent-60-static-sm .animated {
+  -webkit-animation: none;
+          animation: none;
+  -webkit-transform: rotate(-72deg);
+          transform: rotate(-72deg);
+}
+
+.percent-40 .speedometer.play .animated,
+.percent-40-sm .speedometer.play .animated {
+  -webkit-animation-name: to-40;
+          animation-name: to-40;
+}
+
+.percent-40-static .animated,
+.percent-40-static-sm .animated {
+  -webkit-animation: none;
+          animation: none;
+  -webkit-transform: rotate(-108deg);
+          transform: rotate(-108deg);
+}
+
+.percent-33 .speedometer.play .animated,
+.percent-33-sm .speedometer.play .animated {
+  -webkit-animation-name: to-33;
+          animation-name: to-33;
+}
+
+.percent-33-static .animated,
+.percent-33-static-sm .animated {
+  -webkit-animation: none;
+          animation: none;
+  -webkit-transform: rotate(-120.06deg);
+          transform: rotate(-120.06deg);
+}
+
+.percent-30 .speedometer.play .animated,
+.percent-30-sm .speedometer.play .animated {
+  -webkit-animation-name: to-30;
+          animation-name: to-30;
+}
+
+.percent-30-static .animated,
+.percent-30-static-sm .animated {
+  -webkit-animation: none;
+          animation: none;
+  -webkit-transform: rotate(-126deg);
+          transform: rotate(-126deg);
+}
+
+.percent-16 .speedometer.play .animated,
+.percent-16-sm .speedometer.play .animated {
+  -webkit-animation-name: to-16;
+          animation-name: to-16;
+}
+
+.percent-16-static .animated,
+.percent-16-static-sm .animated {
+  -webkit-animation: none;
+          animation: none;
+  -webkit-transform: rotate(-150.12deg);
+          transform: rotate(-150.12deg);
+}
+
+@-webkit-keyframes to-100 {
+  0% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+}
+
+@keyframes to-100 {
+  0% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+}
+@-webkit-keyframes to-66 {
+  0% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  100% {
+    -webkit-transform: rotate(-60.12deg);
+            transform: rotate(-60.12deg);
+  }
+}
+@keyframes to-66 {
+  0% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  100% {
+    -webkit-transform: rotate(-60.12deg);
+            transform: rotate(-60.12deg);
+  }
+}
+@-webkit-keyframes to-60 {
+  0% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  100% {
+    -webkit-transform: rotate(-72deg);
+            transform: rotate(-72deg);
+  }
+}
+@keyframes to-60 {
+  0% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  100% {
+    -webkit-transform: rotate(-72deg);
+            transform: rotate(-72deg);
+  }
+}
+@-webkit-keyframes to-40 {
+  0% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  100% {
+    -webkit-transform: rotate(-108deg);
+            transform: rotate(-108deg);
+  }
+}
+@keyframes to-40 {
+  0% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  100% {
+    -webkit-transform: rotate(-108deg);
+            transform: rotate(-108deg);
+  }
+}
+@-webkit-keyframes to-33 {
+  0% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  100% {
+    -webkit-transform: rotate(-120.06deg);
+            transform: rotate(-120.06deg);
+  }
+}
+@keyframes to-33 {
+  0% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  100% {
+    -webkit-transform: rotate(-120.06deg);
+            transform: rotate(-120.06deg);
+  }
+}
+@-webkit-keyframes to-30 {
+  0% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  100% {
+    -webkit-transform: rotate(-126deg);
+            transform: rotate(-126deg);
+  }
+}
+@keyframes to-30 {
+  0% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  100% {
+    -webkit-transform: rotate(-126deg);
+            transform: rotate(-126deg);
+  }
+}
+@-webkit-keyframes to-16 {
+  0% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  100% {
+    -webkit-transform: rotate(-150.12deg);
+            transform: rotate(-150.12deg);
+  }
+}
+@keyframes to-16 {
+  0% {
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+  }
+  100% {
+    -webkit-transform: rotate(-150.12deg);
+            transform: rotate(-150.12deg);
+  }
+}
+@media (max-width: 71.875em) {
+  .speedometer {
+    width: 189px;
+    height: 108px;
+    position: relative;
+    margin: 20px auto;
+  }
+  .speedometer::after {
+    height: 9px;
+    width: 117px;
+  }
+  .speedometer .dial {
+    padding-top: 18px;
+  }
+  .speedometer .bar {
+    position: relative;
+    overflow: hidden;
+    height: 85.5px;
+  }
+  .speedometer .half-circle {
+    height: 85.5px;
+    width: 171px;
+    border-radius: 171px 171px 0 0;
+    -webkit-transform-origin: bottom center;
+            transform-origin: bottom center;
+  }
+  .speedometer .half-circle-cover {
+    height: 58.5px;
+    width: 117px;
+    border-radius: 171px 171px 0 0;
+  }
+  .speedometer .needle {
+    width: 10.8px;
+  }
+  .speedometer .needle .inner {
+    height: 100.8px;
+    width: 10.8px;
+  }
+}
+@media (max-width: 64.0625em) {
+  .speedometer {
+    width: 168px;
+    height: 96px;
+    position: relative;
+    margin: 20px auto;
+  }
+  .speedometer::after {
+    height: 8px;
+    width: 104px;
+  }
+  .speedometer .dial {
+    padding-top: 16px;
+  }
+  .speedometer .bar {
+    position: relative;
+    overflow: hidden;
+    height: 76px;
+  }
+  .speedometer .half-circle {
+    height: 76px;
+    width: 152px;
+    border-radius: 152px 152px 0 0;
+    -webkit-transform-origin: bottom center;
+            transform-origin: bottom center;
+  }
+  .speedometer .half-circle-cover {
+    height: 52px;
+    width: 104px;
+    border-radius: 152px 152px 0 0;
+  }
+  .speedometer .needle {
+    width: 9.6px;
+  }
+  .speedometer .needle .inner {
+    height: 89.6px;
+    width: 9.6px;
+  }
+}
+@media (max-width: 56.25em) {
+  .speedometer {
+    width: 147px;
+    height: 84px;
+    position: relative;
+    margin: 20px auto;
+  }
+  .speedometer::after {
+    height: 7px;
+    width: 91px;
+  }
+  .speedometer .dial {
+    padding-top: 14px;
+  }
+  .speedometer .bar {
+    position: relative;
+    overflow: hidden;
+    height: 66.5px;
+  }
+  .speedometer .half-circle {
+    height: 66.5px;
+    width: 133px;
+    border-radius: 133px 133px 0 0;
+    -webkit-transform-origin: bottom center;
+            transform-origin: bottom center;
+  }
+  .speedometer .half-circle-cover {
+    height: 45.5px;
+    width: 91px;
+    border-radius: 133px 133px 0 0;
+  }
+  .speedometer .needle {
+    width: 8.4px;
+  }
+  .speedometer .needle .inner {
+    height: 78.4px;
+    width: 8.4px;
+  }
+}
+@media (max-width: 51.5625em) {
+  .speedometer {
+    width: 126px;
+    height: 72px;
+    position: relative;
+    margin: 20px auto;
+  }
+  .speedometer::after {
+    height: 6px;
+    width: 78px;
+  }
+  .speedometer .dial {
+    padding-top: 12px;
+  }
+  .speedometer .bar {
+    position: relative;
+    overflow: hidden;
+    height: 57px;
+  }
+  .speedometer .half-circle {
+    height: 57px;
+    width: 114px;
+    border-radius: 114px 114px 0 0;
+    -webkit-transform-origin: bottom center;
+            transform-origin: bottom center;
+  }
+  .speedometer .half-circle-cover {
+    height: 39px;
+    width: 78px;
+    border-radius: 114px 114px 0 0;
+  }
+  .speedometer .needle {
+    width: 7.2px;
+  }
+  .speedometer .needle .inner {
+    height: 67.2px;
+    width: 7.2px;
+  }
+}
+.btn-light{
+	height :45px !important;
+}
+.file-box {
+    padding: 20px;
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #fafafa;
+    border-radius: 4px;
+}
+.file-box h3 {
+    font-size: 20px;
+    font-weight: 500;
+    color: #2c82c9;
+    margin: 0 0 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #f0f0f0;
+}
+.file-box h3 .fa {
+    margin-right: 8px;
+}
+.file-box .fa-ul li .fa-li {
+    color: #2c82c9;
+}
+
+.label-money {
+	display: inline;
+    padding: .2em .6em .3em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25em;
+    background-color: #337ab7;
+}
+.label-money-t {
+	display: inline;
+    padding: .2em .6em .3em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25em;   
+    background-color: #5cb85c;
+	font-size: 95%;
+}
+.label-money-d {
+	display: inline;
+    padding: .2em .6em .3em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25em;    	
+    background-color: #d9534f;
+}
+.label-money-p {
+	display: inline;
+    padding: .2em .6em .3em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25em;   
+    background-color: #8895a9;
+}
+.cp h3 {
+    font-size: 20px;
+    font-weight: 500;
+    color: #2c82c9;
+    margin: 0 0 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #f0f0f0;
+}
+.UploadShipI {
+	display : inline;
+}
+.UPFS {
+  margin: 15px;
+}
+
+.UPFSR {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.UPFSC {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  flex: 1;
+}
+.cc-banner.cc-bottom {
+top : 0 !important;
+height: 55px !important;
+}
+@media (max-width:600px) {
+.cc-banner.cc-bottom {
+top : 0 !important;
+height: 155px !important;
+}
+.cc-revoke, .cc-window {
+top : 0 !important;
+height: 155px !important;
+}	
+}
+</style>
+
+
+<div class="package-splash">
+
+<div class="clearfix pt50"></div>
+<center>
+<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style>
+
+ 
+               </center></center>
+<div class="file-box">
+   <center> 
+<h3>
+<i class="fa fa-" aria-hidden="true"></i> Size: {{ file.getFormattedFilesize() }} - Uploaded: {{ file.getFormattedUploadedDate() }} </h3> 
+</center>
+<div class="row">
+
+
+{% if UserHelper.showSiteAdverts() %}
+            <div class="container">
+                <div class="row justify-content-center text-center">		
+                    <div class="col-lg-12">
+                    {{ SITE_CONFIG_ADVERT_DELAYED_REDIRECT_TOP|raw }}
+                    </div>
+                </div>
+            </div>
+			{% endif %}
+<div>
+
+    
+    	        
+        
+
+
+        <div class="col-xs-12">                  
+
+<center>Select The Download Type :
+<center>
+
+
+
+</center></center>
+
+<div class="file-box">
+<h3>
+<i class="fa fa-info-circle" aria-hidden="true"></i>About Web Files</h3>
+<ul class="fa-ul">
+<li><i class="fa-li fa fa-long-arrow-right"></i>The Web Files category includes files related to websites and Web servers. These include static and dynamic webpages, Web applications, and files referenced by webpages. Files generated by Web development software are also included in this category.<li><i class="fa-li fa fa-long-arrow-right"></i>Common Web file extensions include .HTML, .ASP, .PHP, and .CSS.</li>
+</li>
+</ul>
+</div>
+
+
+
+
+        
+         
+          
+                    <table class="border--round table--alternate-row download-page-compare">
+                        <tbody>
+						 <tr>
+                      
+                      
+                       <center><table class="ppdRateTable table table-bordered table-striped">
+                    <thead>
+                    <tr>
+					
+                                        <td style="width: 25%; text-align: center;">
+													Free
+											</td>
+					
+                                        <td style="width: 25%; text-align: center;">
+													Premium *
+											</td>
+					
+
+					
+                                        </tr></thead>
+                    <tbody>
+					                                                    <tr>
+                               
+                                                                    <td style="text-align: center;">  <div class="percent-33">
+    <div class="speedometer play">
+      <div class="dial">
+        <div class="bar">
+          <div class="half-circle half-circle-bg"></div>
+          <div class="half-circle half-circle-speed animated"></div>
+          <div class="half-circle half-circle-cover"></div>
+        </div>
+        <div class="needle animated">
+          <div class="inner">
+            <div class="top"></div>
+            <div class="bottom"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div></td>
+                                                                        <td style="text-align: center;">  <div class="percent-100">
+    <div class="speedometer play">
+      <div class="dial">
+        <div class="bar">
+          <div class="half-circle half-circle-bg"></div>
+          <div class="half-circle half-circle-speed animated"></div>
+          <div class="half-circle half-circle-cover"></div>
+        </div>
+        <div class="needle animated">
+          <div class="inner">
+            <div class="top"></div>
+            <div class="bottom"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div></td>
+                                                                </tr>
+                      
+                      
+                  
+                                                                </tr>
+                           <tr>
+                                                                    <td style="text-align: center !important;">30 Seconds Waiting time Before Download</td>
+                                                                        <td style="text-align: center !important;font-weight: bold;">Instant Download</td>
+                                                                </tr>
+                                                                																                                                        <tr>
+                                                                    <td style="text-align: center !important;">5 Minutes waiting time between Downloads</td>
+                                                                        <td style="text-align: center !important;font-weight: bold;">Never Waiting -> Just One single click to Download any file ;)</td>
+                                                                </tr>
+                                                                																                                                        <tr>
+                                                                    <td style="text-align: center !important;font-weight: bold;">Unlimited Download with any file size & Traffic</td>
+                                                                        <td style="text-align: center !important;font-weight: bold;">Unlimited Download with any file size & Traffic</td>
+                                                                </tr>
+																                                                        <tr>
+                                                                    <td style="text-align: center !important;">No Downloads Resume if servers are busy	</td>
+                                                                        <td style="text-align: center !important;font-weight: bold;">100% Downloads Resume</td>
+                                                                </tr>
+                                                        <tr>
+                                                                    <td style="text-align: center !important;">Contain Site advertising</td>
+                                                                        <td style="text-align: center !important;font-weight: bold;">Never See ADS</td>
+                                                                </tr>
+                                                        <tr>
+                                                                    <td style="text-align: center !important;">Limited Download Per Day</td>
+                                                                        <td style="text-align: center !important;font-weight: bold;">Unlimited Download Anytime</td>
+                                                                </tr>
+																                                                        <tr>
+                                                                    <td style="text-align: center !important;">Slow Download When servers are busy</td>
+                                                                        <td style="text-align: center !important;font-weight: bold;">Fastest download even when servers are busy</td>
+                                                                </tr>
+                                                                
+                                                        <tr>
+                                                                    <td style="text-align: center !important;">Safe Download<br />No POP ADS<br />No Adult ADS</td>
+                                                                         <td style="text-align: center !important;font-weight: bold;">100%<br /> <i class="zmdi zmdi-shield-security"></i> Safe Download <br /><i class="zmdi zmdi-globe-lock"></i> Secure Browsing <br /><i class="zmdi zmdi-block"></i> No any kind of ADS<br /><i class="zmdi zmdi-cloud-download"></i> Unlimited Everything<br /><i class="zmdi zmdi-timer-off"></i> Never Waiting <i class="zmdi zmdi-zero"></i></td>
+                                                                 </tr>
+
+  <td style="text-align: center !important;"><form action="" method="POST">
+                        <div class="slow-download">
+                                        <a href="#" onclick="triggerFreeDownload(); return false;" class="btn-red">{{ t('slow_download', 'slow download')|upper }}
+                                        </a>
+									</div>
+                                    <div class="download-timer" style="display:none;">
+                                        <a href="#" onclick="return false;" class="btn-red">
+                                                {{ t('please_wait', 'please wait')|upper }} <span class="download-timer-seconds"></span>&nbsp;{{ t('sec', 'sec')|upper }}
+                                        </a>
+                                    </div>
+                    </th>
+                  <td style="text-align: center !important;">
+																				
+			
+
+            <a href="{{ upgradeUrl }}" class="button-contact">FAST DOWNLOAD</a>
+                                    
+                       
+                    </th>
+                </tr>
+				
+				
+
+				
+                        </tbody>
+                    </table>
+                </div>
+
+{% if UserHelper.showSiteAdverts() %}
+		    <div class="container" style="padding-top: 20px">
+                <div class="row justify-content-center text-center">		
+                    <div class="col-lg-12">
+                    {{ SITE_CONFIG_ADVERT_DELAYED_REDIRECT_BOTTOM|raw }}
+                    </div>
+                </div>
+            </div>
+		{% endif %}
+
+
+<div class="row">
+	            		<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-md-offset-2">
+		            		<div class="blocktxt">
+		            			<div class="title">About Firedrop</div>
+		            			<div class="content">
+			            			<b>What is Firedrop?</b><br>
+												Firedrop is a Files Upload service that pays you money for your downloads.
+												<br><b>is Firedrop secure?</b><br>
+												Yes,All uploaded files are scanned for malware.
+												<br><b>is it free to join?</b><br>
+												yes,Firedrop is completely free to join ,<a href="/register.html">Sign up now</a>
+												<br><b>How to report abuse?</b><br>
+												if you found someone breaking our terms of serive please report
+												<br><b>HOW DO I GET STARTED?</b><br>
+												Refer to our home page and register a free account.
+												<br><b>How To Upload a File?</b><br>
+												Login to your Upload Ship account. Select a file from your coumputer and click upload Copy-and-paste the link and share it in forums , blogs, social media etc.
+												<br><b>HOW TO SIGNUP AND START EARNING?</b><br>
+												Visit our Home Page, Press to sign up to register a new account, fill all the required data (Username, Email and password) After registering you have to sign in.
+												<br><b>USE OUR REFERRAL PROGRAM TO INCREASE YOUR REVENUE</b><br>
+												Using our referral system you can earn an extra percentage of the people you refer to our website you can use a link or a banner, Earning percentage is up to 75% of user earnings
+												<br><b>HOW TO WITHDRAW YOUR EARNINGS?</b><br>
+												Once you reach 5$ in your account, you can withdraw them at any time,login to your account, select payments and click withdraw.
+		            			</div>
+	            			</div>
+            			</div>
+							<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+	            			<div class="antivirus">
+	            				<img class="vimg" width="150px" height="100px" src="/themes/firedrop/img/anti1.png" alt="Upload">
+	            				<div class="content">
+	            					<span>Bitdefender scan</span>
+	            					<p>This file was scanned by Bitdefender during upload.</p>
+	            				</div>
+	            				<div class="clearfix"></div>
+	            			</div>
+            			</div>
+	            		<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+	            			<div class="antivirus">
+	            				<img class="vimg" width="150px" height="100px" src="/themes/firedrop/img/anti2.png" alt="DoniUpload">
+	            				<div class="content">
+	            					<span>VirusTotal scan</span>
+	            					<p>Upload Ship scans high-risk files using VirusTotal. </p>
+	            				</div>
+	            				<div class="clearfix"></div>
+	            			</div>
+            			</div>
+					
+</div>
+	</div>
+<div class="US_F_ADS">
+
+
+<div class="clear"></div>
+<div style="background: #f9fafb;">
+<center>
+
+
+
+
+
+
+</center>    </div>
+    </div>
+  </div>
+</section>
+
+
+ </tbody>
+        </table>
+    </div>
+	<div class="clear"></div>
+
+<div class="row  package-splash">
+	<div class="container">
+    
+    	        
+        
+        <div class="col-xs-12">
+        
+        	<hr />
+            
+            <center>
+            <h4>Need a little help to decide?</h4>
+            <a href="/contact" class="button-contact"><i class="fa fa-envelope" aria-hidden="true"></i>  Get in touch with us</a>
+            
+            </center>
+      
+        </div>
+    </div>
+</div>
+
+	
+{% endblock %}
+{% block footerjs %}
+<script>
+    var seconds = {{ additionalSettings['download_wait']|number_format }};
+    var started = false;
+    function display()
+    {
+        $('.slow-download').hide();
+        $('.download-timer').show();
+        if (seconds == 0)
+        {
+            $('.download-timer').html("<a class='btn-red' href='{{ file.getNextDownloadPageLink() }}'>{{ t("download_slow", "download slow")|upper }}</a>");
+        } else
+        {
+            $('.download-timer-seconds').html(seconds);
+        }
+        seconds--;
+    }
+    
+    function triggerFreeDownload() {
+        if(started === true) {
+            return;
+        }
+        
+        started = true;
+        display();
+        countdownTimer = setInterval('display()', 1000);
+    }
+
+    //$(document).ready(function () {
+    //    display();
+    //    $('.download-timer-seconds').html({{ additionalSettings['download_wait']|number_format }});
+    //    countdownTimer = setInterval('display()', 1000);
+    //});
+</script>
+
+{% if downloadPageData['additional_javascript_code'] is defined %}
+    {{ downloadPageData['additional_javascript_code']|raw }}
+{% endif %}
+{% endblock %}

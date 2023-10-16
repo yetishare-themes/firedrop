@@ -1,0 +1,31 @@
+{% extends "partial/firedrop_layout.html.twig" %}
+
+{% block title %}{{ t("error_page_name", "Error") }}{% endblock %}
+{% block description %}{{ t("error_meta_description", "Error") }}{% endblock %}
+{% block keywords %}{{ t("error_meta_keywords", "error, image, picture, pic, img, hosting, sharing, upload, storage, site, website") }}{% endblock %}
+
+{% block body %}
+   <div id="wrap">
+<section id="content_header">
+	<div class="container text-center">
+		<h1>Error</h1>
+    </div>
+</section>
+
+
+
+<section class="content_divider container text-center">
+</section>
+
+
+
+
+<section id="content_box" class="container text-center">
+	<strong>
+	 <ul class="pageErrors"><li class="no-side-margin"><i class="fa fa-exclamation-triangle margin-right-20"></i> {{ error_msg }}</li></ul>
+
+	</strong>
+ 	
+</section>
+         </div>
+{% endblock %}

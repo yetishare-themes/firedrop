@@ -1,0 +1,52 @@
+.affiliate-header {
+	
+
+  
+    background: #FFF url('/themes/firedrop/img/afilBanner.png') center center;
+  
+    height: 279px;
+    background-size: cover;
+
+}
+
+.img-affil-header {
+	margin-top:2%;
+}
+.affiliate-overview h1 {
+	font-family: 'Gotham Round Bold';
+	color: #1e4759;
+	font-size:34px;
+	padding:28px;
+}
+
+.affiliate-overview h2 {
+	font-family: 'Gotham Round';
+	color: #1e4759;
+	font-size:21px;
+
+}
+.affiliate-overview p {
+	font-family: 'Gotham Round Light';
+	color: #1e4759;
+	font-size:16px;
+
+}
+.affiliate-row {
+	margin-top:24px;
+	margin-bottom:42px;
+}
+.btn-apply {
+  display: block;
+  width: 453px;
+  height: 117px;
+  background: url('/themes/firedrop/img/btn-apply.png') no-repeat 0 0;
+
+}
+
+.btn-apply:hover
+{ 
+  background-position: 0 -117px;
+}
+.img-affil-overview {
+	margin-left:-10%;
+}
